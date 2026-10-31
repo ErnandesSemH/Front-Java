@@ -1,56 +1,17 @@
-<!DOCTYPE html><html class="dark" lang="pt-BR"><head>
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+<head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="web_standard" name="shell-type">
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
-  <style>
-    @layer base {
-      html, body { margin: 0; padding: 0; }
-      body { overscroll-behavior: none; }
-      main > :first-child { margin-top: 0 !important; }
-      main > :last-child { margin-bottom: 0 !important; }
-    }
-    ::-webkit-scrollbar { display: none; }
-
-    /* Efeito de pulso para marcadores */
-    .hotspot-pulse::after {
-      content: '';
-      position: absolute;
-      inset: -5px;
-      border-radius: 9999px;
-      border: 2px solid #e9c176;
-      animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-    }
-    @keyframes ping {
-      75%, 100% {
-        transform: scale(1.9);
-        opacity: 0;
-      }
-    }
-
-    /* Isolamento Inteligente dos Marcadores Solicitado */
-    .hotspot-pin {
-      transition: opacity 0.24s cubic-bezier(0.16, 1, 0.3, 1), transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), filter 0.24s ease;
-      will-change: opacity, transform;
-    }
-
-    /* Quando um marcador ou balão está ativo, todos os outros ficam invisíveis */
-    #hotspotsContainer.has-active-hotspot .hotspot-pin:not(.is-active) {
-      opacity: 0 !important;
-      pointer-events: none !important;
-      transform: translate(-50%, -50%) scale(0.65) !important;
-      filter: blur(3px);
-    }
-
-    #hotspotsContainer.has-active-hotspot .hotspot-pin.is-active {
-      opacity: 1 !important;
-      z-index: 50 !important;
-      transform: translate(-50%, -50%) scale(1.08) !important;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balística • Portal Oficial de Registro e Orientação Técnica</title>
+  
+  <!-- Preconnect and Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  
+  <!-- Tailwind CSS & Configuration -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script id="tailwind-config">
     tailwind.config = {
@@ -66,24 +27,37 @@
             "surface-container": "#1f1f23",
             "surface-container-high": "#292a2d",
             "surface-container-highest": "#343538",
+            "surface-variant": "#343538",
             primary: "#e9c176",
             "primary-container": "#c5a059",
             "on-primary": "#412d00",
             "on-primary-container": "#4e3700",
+            "primary-fixed": "#ffdea5",
+            "primary-fixed-dim": "#e9c176",
             secondary: "#bcc8d6",
+            "secondary-container": "#3c4854",
+            "on-secondary": "#26323d",
+            "on-secondary-container": "#aab6c4",
             "on-surface": "#e3e2e6",
             "on-surface-variant": "#d1c5b4",
-            "outline-variant": "#4e4639"
+            "outline": "#9a8f80",
+            "outline-variant": "#4e4639",
+            tertiary: "#ffb4a9",
+            "tertiary-container": "#ff8070",
+            error: "#ffb4ab",
+            "error-container": "#93000a"
           },
           fontFamily: {
-            "label-mono": ["Space Grotesk", "monospace"],
-            "body-sm": ["Inter", "sans-serif"],
             "headline-lg": ["Space Grotesk", "sans-serif"],
             "headline-md": ["Space Grotesk", "sans-serif"],
             "headline-sm": ["Space Grotesk", "sans-serif"],
+            "display-hero": ["Space Grotesk", "sans-serif"],
+            "label-caps": ["Space Grotesk", "sans-serif"],
+            "label-mono": ["Space Grotesk", "monospace"],
             "body-lg": ["Inter", "sans-serif"],
             "body-md": ["Inter", "sans-serif"],
-            "label-caps": ["Space Grotesk", "sans-serif"]
+            "body-sm": ["Inter", "sans-serif"],
+            "title-md": ["Inter", "sans-serif"]
           },
           spacing: {
             "gutter": "1.5rem",
@@ -98,13 +72,67 @@
       }
     };
   </script>
+
+  <style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+
+    /* Efeito de pulso para marcadores da inspecao de armas */
+    .hotspot-pulse::after {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border-radius: 9999px;
+      border: 2px solid #e9c176;
+      animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+    @keyframes ping {
+      75%, 100% {
+        transform: scale(1.9);
+        opacity: 0;
+      }
+    }
+
+    /* Isolamento Inteligente dos Marcadores */
+    .hotspot-pin {
+      transition: opacity 0.24s cubic-bezier(0.16, 1, 0.3, 1), transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), filter 0.24s ease;
+      will-change: opacity, transform;
+    }
+
+    #hotspotsContainer.has-active-hotspot .hotspot-pin:not(.is-active) {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transform: translate(-50%, -50%) scale(0.65) !important;
+      filter: blur(3px);
+    }
+
+    #hotspotsContainer.has-active-hotspot .hotspot-pin.is-active {
+      opacity: 1 !important;
+      z-index: 50 !important;
+      transform: translate(-50%, -50%) scale(1.08) !important;
+    }
+
+    .spa-view {
+      display: none;
+    }
+    .spa-view.active-view {
+      display: block;
+    }
+  </style>
 </head>
-<body class="bg-surface font-body-md text-on-surface min-h-screen selection:bg-primary-container selection:text-on-primary-container">
-  
-  <!-- Global Header -->
-  <header class="fixed top-0 left-0 right-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.4)]">
-    <div class="h-20 max-w-7xl mx-auto px-gutter flex items-center justify-between">
-      <a class="flex items-center gap-space-sm group" href="#">
+<body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container">
+
+  <!-- HEADER GLOBAL UNIFICADO -->
+  <header class="fixed top-0 left-0 right-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.4)] border-b border-outline-variant/20">
+    <div class="h-20 max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between gap-4">
+      
+      <!-- Brand Logo -->
+      <a class="flex items-center gap-3 group shrink-0" href="pagina_inicial.html">
         <div class="w-8 h-8 flex items-center justify-center text-primary">
           <svg class="w-6 h-6 stroke-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="9"></circle>
@@ -115,29 +143,40 @@
             <line x1="19" x2="23" y1="12" y2="12"></line>
           </svg>
         </div>
-        <span class="font-headline-sm text-headline-sm uppercase tracking-wider text-on-surface">Balística</span>
-      </a>
-      <nav class="hidden md:flex items-center gap-space-lg">
-        <a class="transition-colors uppercase text-primary font-semibold border-b border-primary pb-space-xs" href="#">Armas</a>
-        <a class="font-label-caps text-[11px] text-on-surface-variant hover:text-on-surface transition-colors uppercase" href="{{DATA:SCREEN:SCREEN_2}}">Locais de Venda</a>
-        <a class="font-label-caps text-[11px] text-on-surface-variant hover:text-on-surface transition-colors uppercase" href="#">Clubes de Tiro</a>
-      </nav>
-      <div class="flex items-center gap-space-md">
-        <a class="hidden sm:inline-flex items-center justify-center px-space-md py-space-xs rounded-lg bg-primary-container text-on-primary-container font-label-caps text-[11px] uppercase tracking-wider hover:bg-primary transition-colors" href="#">Consultar Guia</a>
-        <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-          <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
+        <div class="flex flex-col">
+          <span class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-wider leading-tight">BALÍSTICA</span>
+          <span class="font-label-caps text-[9px] text-outline uppercase tracking-widest leading-none">PORTAL OFICIAL • REGISTRO</span>
         </div>
+      </a>
+
+      <!-- Main Navigation Menu -->
+      <nav class="hidden md:flex items-center gap-1 sm:gap-2">
+        <a class="nav-link font-label-caps text-label-caps uppercase px-4 py-2 text-on-surface-variant hover:text-on-surface transition-all rounded tracking-widest" href="pagina_inicial.html">INÍCIO</a>
+        <a class="nav-link font-label-caps text-label-caps uppercase px-4 py-2 text-primary font-bold border-b-2 border-primary bg-surface-container-high hover:text-on-surface transition-all rounded tracking-widest" href="pagina_de_armas.html">ARMAS</a>
+        <a class="nav-link font-label-caps text-label-caps uppercase px-4 py-2 text-on-surface-variant hover:text-on-surface transition-all rounded tracking-widest" href="pagina_de_venda.html">LOCAIS DE VENDA</a>
+        <a class="nav-link font-label-caps text-label-caps uppercase px-4 py-2 text-on-surface-variant hover:text-on-surface transition-all rounded tracking-widest" href="pagina_de_clubes.html">CLUBES DE TIRO</a>
+      </nav>
+
+      <!-- Action Buttons & User Profile -->
+      <div class="flex items-center gap-3 shrink-0">
+        <a class="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-lg bg-primary-container hover:bg-primary text-on-primary-container font-label-caps text-[11px] uppercase tracking-wider transition-all shadow-sm font-semibold" href="pagina_de_armas.html">
+          Consultar Guia
+        </a>
+        <button aria-label="Acessar Conta" class="w-9 h-9 rounded-full bg-primary hover:bg-primary-container text-on-primary transition-all flex items-center justify-center shadow-[0_0_12px_rgba(233,193,118,0.25)] cursor-pointer focus:outline-none" id="user-login-btn">
+          <span class="material-symbols-outlined text-[20px]">person</span>
+        </button>
       </div>
+
     </div>
   </header>
 
-  <!-- Main Content -->
-  <main class="w-full pt-20 bg-surface min-h-[calc(100vh-5rem)]">
+  <!-- MAIN CONTENT -->
+  <main class="w-full pt-20 bg-surface min-h-[calc(100vh-280px)]">
     <div class="flex flex-col w-full">
       <!-- Ambient Glow & Header -->
       <div class="relative w-full overflow-hidden">
         <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[720px] h-[340px] bg-primary/5 rounded-full blur-[140px] pointer-events-none"></div>
-        <div class="max-w-7xl mx-auto px-gutter pt-space-xl pb-space-lg">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 pt-space-xl pb-space-lg">
           <div class="flex items-center gap-space-sm mb-space-sm">
             <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
             <span class="font-label-caps text-[11px] uppercase text-primary tracking-widest">Compêndio Técnico e Histórico • Balística</span>
@@ -152,7 +191,7 @@
           </p>
 
           <!-- Technical Filter Bar -->
-          <div class="mt-space-xl bg-surface-container-low p-space-md rounded-xl flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md shadow-lg shadow-surface-container-lowest/50">
+          <div class="mt-space-xl bg-surface-container-low p-space-md rounded-xl flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md shadow-lg border border-outline-variant/20">
             <div class="relative flex-1">
               <span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
               <input class="w-full bg-surface-container pl-11 pr-space-md py-space-sm rounded-lg font-body-md text-on-surface placeholder:text-outline-variant focus:outline-none focus:ring-1 focus:ring-primary transition-all" id="searchInput" placeholder="Filtrar por plataforma, sistema mecânico, calibre ou época..." type="text">
@@ -174,8 +213,6 @@
               <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span> 10 Plataformas Curadas</span>
               <span class="hidden sm:inline text-outline-variant">•</span>
               <span class="hidden sm:inline">6+ Hotspots Técnicos por Arma</span>
-              <span class="hidden md:inline text-outline-variant">•</span>
-              <span class="hidden md:inline">Ocultação Automática dos Outros Pontos em Hover</span>
             </div>
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-[16px] text-primary">filter_center_focus</span>
@@ -186,7 +223,7 @@
       </div>
 
       <!-- 10 Weapons Asymmetric Editorial Grid -->
-      <div class="max-w-7xl mx-auto px-gutter pb-margin w-full">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 pb-margin w-full">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-space-xl" id="cardsGrid">
           
           <!-- ITEM 1: GLOCK 17 -->
@@ -216,14 +253,14 @@
                   <span class="material-symbols-outlined text-primary text-[18px]">history_edu</span>
                   <span class="font-label-caps text-[11px] uppercase tracking-wider text-primary">Origem &amp; Revolução Histórica</span>
                 </div>
-                <p class="font-body-md text-on-surface-variant leading-relaxed">Desenvolvida por Gaston Glock, revolucionou a indústria bélica ao introduzir armação moldada em polímero e sistema percussor striker-fired pré-armado com extrema durabilidade.</p>
+                <p class="font-body-md text-on-surface-variant leading-relaxed">Desenvolvida por Gaston Glock, revolucionou a indústria bélica ao introduzir armação moldada em polímero e sistema percussor striker-fired pré-armado.</p>
               </div>
               <div class="flex flex-col gap-1.5 pt-space-xs">
                 <div class="flex items-center gap-2">
                   <span class="material-symbols-outlined text-secondary text-[18px]">precision_manufacturing</span>
-                  <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary">Engenharia &amp; Mecânica de Funcionamento</span>
+                  <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary">Engenharia &amp; Mecânica</span>
                 </div>
-                <p class="font-body-md text-on-surface-variant leading-relaxed">Opera por recuo curto de cano basculante tipo Browning modificado com 3 travas automáticas do sistema Safe Action dispensando travas manuais externas.</p>
+                <p class="font-body-md text-on-surface-variant leading-relaxed">Opera por recuo curto de cano basculante tipo Browning modificado com 3 travas automáticas do sistema Safe Action.</p>
               </div>
             </div>
           </article>
@@ -255,14 +292,14 @@
                   <span class="material-symbols-outlined text-primary text-[18px]">history_edu</span>
                   <span class="font-label-caps text-[11px] uppercase tracking-wider text-primary">Origem &amp; Revolução Histórica</span>
                 </div>
-                <p class="font-body-md text-on-surface-variant leading-relaxed">Sucessor dos lança-foguetes RPG-2 e das bazucas da Segunda Guerra, consagrou-se como o lançador antitanque portátil mais influente do século XX.</p>
+                <p class="font-body-md text-on-surface-variant leading-relaxed">Sucessor dos lança-foguetes RPG-2, consagrou-se como o lançador antitanque portátil mais influente do século XX.</p>
               </div>
               <div class="flex flex-col gap-1.5 pt-space-xs">
                 <div class="flex items-center gap-2">
                   <span class="material-symbols-outlined text-secondary text-[18px]">precision_manufacturing</span>
-                  <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary">Engenharia &amp; Mecânica de Funcionamento</span>
+                  <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary">Engenharia &amp; Mecânica</span>
                 </div>
-                <p class="font-body-md text-on-surface-variant leading-relaxed">Combina tubo sem recuo com bocal de Venturi traseiro para compensação de forças e ogivas PG-7 HEAT de carga oca estabilizadas por aletas dobráveis.</p>
+                <p class="font-body-md text-on-surface-variant leading-relaxed">Combina tubo sem recuo com bocal de Venturi traseiro para compensação de forças e ogivas PG-7 HEAT de carga oca.</p>
               </div>
             </div>
           </article>
@@ -294,14 +331,14 @@
                   <span class="material-symbols-outlined text-primary text-[18px]">history_edu</span>
                   <span class="font-label-caps text-[11px] uppercase tracking-wider text-primary">Origem &amp; Revolução Histórica</span>
                 </div>
-                <p class="font-body-md text-on-surface-variant leading-relaxed">O ápice mecânico dos fuzis de ferrolho manual de Paul Mauser, referência definitiva de rifles de precisão militar e caça em todo o planeta.</p>
+                <p class="font-body-md text-on-surface-variant leading-relaxed">O ápice mecânico dos fuzis de ferrolho manual de Paul Mauser, referência definitiva de rifles de precisão militar e caça.</p>
               </div>
               <div class="flex flex-col gap-1.5 pt-space-xs">
                 <div class="flex items-center gap-2">
                   <span class="material-symbols-outlined text-secondary text-[18px]">precision_manufacturing</span>
-                  <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary">Engenharia &amp; Mecânica de Funcionamento</span>
+                  <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary">Engenharia &amp; Mecânica</span>
                 </div>
-                <p class="font-body-md text-on-surface-variant leading-relaxed">Ferrolho rotativo com alimentação controlada (Controlled-Round Feed) por garra extratora maciça que segura o cartucho antes da entrada na câmara.</p>
+                <p class="font-body-md text-on-surface-variant leading-relaxed">Ferrolho rotativo com alimentação controlada (Controlled-Round Feed) por garra extratora maciça.</p>
               </div>
             </div>
           </article>
@@ -333,14 +370,14 @@
                   <span class="material-symbols-outlined text-primary text-[18px]">history_edu</span>
                   <span class="font-label-caps text-[11px] uppercase tracking-wider text-primary">Origem &amp; Revolução Histórica</span>
                 </div>
-                <p class="font-body-md text-on-surface-variant leading-relaxed">Arma célebre da guarda de diligências postais da Wells Fargo que deu origem à expressão "riding shotgun", ápice da dispersão e defesa aproximada.</p>
+                <p class="font-body-md text-on-surface-variant leading-relaxed">Arma célebre da guarda de diligências postais da Wells Fargo que deu origem à expressão "riding shotgun".</p>
               </div>
               <div class="flex flex-col gap-1.5 pt-space-xs">
                 <div class="flex items-center gap-2">
                   <span class="material-symbols-outlined text-secondary text-[18px]">precision_manufacturing</span>
-                  <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary">Engenharia &amp; Mecânica de Funcionamento</span>
+                  <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary">Engenharia &amp; Mecânica</span>
                 </div>
-                <p class="font-body-md text-on-surface-variant leading-relaxed">Mecanismo basculante break-action com dois canos paralelos independentes e gatilhos sequenciais, garantindo contingência de disparo imediato.</p>
+                <p class="font-body-md text-on-surface-variant leading-relaxed">Mecanismo basculante break-action com dois canos paralelos independentes e gatilhos sequenciais.</p>
               </div>
             </div>
           </article>
@@ -377,9 +414,9 @@
               <div class="flex flex-col gap-1.5 pt-space-xs">
                 <div class="flex items-center gap-2">
                   <span class="material-symbols-outlined text-secondary text-[18px]">precision_manufacturing</span>
-                  <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary">Engenharia &amp; Mecânica de Funcionamento</span>
+                  <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary">Engenharia &amp; Mecânica</span>
                 </div>
-                <p class="font-body-md text-on-surface-variant leading-relaxed">Tambor rotativo usinado de 6 câmaras alinhado milimetricamente ao cano pela trava do cilindro e lingueta do cão percussor.</p>
+                <p class="font-body-md text-on-surface-variant leading-relaxed">Tambor rotativo usinado de 6 câmaras alinhado milimetricamente ao cano pela trava do cilindro e lingueta do cão.</p>
               </div>
             </div>
           </article>
@@ -411,12 +448,12 @@
                   <span class="material-symbols-outlined text-primary text-[18px]">history_edu</span>
                   <span class="font-label-caps text-[11px] uppercase tracking-wider text-primary">Origem &amp; Revolução Histórica</span>
                 </div>
-                <p class="font-body-md text-on-surface-variant leading-relaxed">Concebido por Mikhail Kalashnikov para suportar lama, areia e gelo sem falhas operacionais, o mais prolífico fuzil de assalto global.</p>
+                <p class="font-body-md text-on-surface-variant leading-relaxed">Concebido por Mikhail Kalashnikov para suportar lama, areia e gelo sem falhas operacionais, o mais prolífico fuzil global.</p>
               </div>
               <div class="flex flex-col gap-1.5 pt-space-xs">
                 <div class="flex items-center gap-2">
                   <span class="material-symbols-outlined text-secondary text-[18px]">precision_manufacturing</span>
-                  <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary">Engenharia &amp; Mecânica de Funcionamento</span>
+                  <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary">Engenharia &amp; Mecânica</span>
                 </div>
                 <p class="font-body-md text-on-surface-variant leading-relaxed">Pistão de curso longo com ferrolho rotativo de 2 dentes pesados e folgas generosas que expelem resíduos sem travar.</p>
               </div>
@@ -450,12 +487,12 @@
                   <span class="material-symbols-outlined text-primary text-[18px]">history_edu</span>
                   <span class="font-label-caps text-[11px] uppercase tracking-wider text-primary">Origem &amp; Revolução Histórica</span>
                 </div>
-                <p class="font-body-md text-on-surface-variant leading-relaxed">Conhecida como vassoura de trincheira e ícone da Lei Seca e Segunda Guerra por sua cadência de 800 tiros por minuto.</p>
+                <p class="font-body-md text-on-surface-variant leading-relaxed">Conhecida como vassoura de trincheira e ícone da Lei Seca por sua cadência de 800 tiros por minuto.</p>
               </div>
               <div class="flex flex-col gap-1.5 pt-space-xs">
                 <div class="flex items-center gap-2">
                   <span class="material-symbols-outlined text-secondary text-[18px]">precision_manufacturing</span>
-                  <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary">Engenharia &amp; Mecânica de Funcionamento</span>
+                  <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary">Engenharia &amp; Mecânica</span>
                 </div>
                 <p class="font-body-md text-on-surface-variant leading-relaxed">Mecanismo de ferrolho aberto (open-bolt) com carregamento por tambor cilíndrico de 50 cartuchos pesados .45 ACP.</p>
               </div>
@@ -489,12 +526,12 @@
                   <span class="material-symbols-outlined text-primary text-[18px]">history_edu</span>
                   <span class="font-label-caps text-[11px] uppercase tracking-wider text-primary">Origem &amp; Revolução Histórica</span>
                 </div>
-                <p class="font-body-md text-on-surface-variant leading-relaxed">Pioneiro em mover o mecanismo de culatra para trás do gatilho mantendo cano de 508mm em um chassi compacto.</p>
+                <p class="font-body-md text-on-surface-variant leading-relaxed">Pioneiro em mover o mecanismo de culatra para trás do gatilho mantendo cano de 508mm em chassi compacto.</p>
               </div>
               <div class="flex flex-col gap-1.5 pt-space-xs">
                 <div class="flex items-center gap-2">
                   <span class="material-symbols-outlined text-secondary text-[18px]">precision_manufacturing</span>
-                  <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary">Engenharia &amp; Mecânica de Funcionamento</span>
+                  <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary">Engenharia &amp; Mecânica</span>
                 </div>
                 <p class="font-body-md text-on-surface-variant leading-relaxed">Gatilho progressivo sem alavanca seletora e mira telescópica ótica 1.5x embutida na alça de transporte.</p>
               </div>
@@ -528,12 +565,12 @@
                   <span class="material-symbols-outlined text-primary text-[18px]">history_edu</span>
                   <span class="font-label-caps text-[11px] uppercase tracking-wider text-primary">Origem &amp; Revolução Histórica</span>
                 </div>
-                <p class="font-body-md text-on-surface-variant leading-relaxed">"A Arma que Conquistou o Oeste", padronizou o cartucho .44-40 intercambiável entre carabinas e revólveres de cintura.</p>
+                <p class="font-body-md text-on-surface-variant leading-relaxed">"A Arma que Conquistou o Oeste", padronizou o cartucho .44-40 intercambiável entre carabinas e revólveres.</p>
               </div>
               <div class="flex flex-col gap-1.5 pt-space-xs">
                 <div class="flex items-center gap-2">
                   <span class="material-symbols-outlined text-secondary text-[18px]">precision_manufacturing</span>
-                  <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary">Engenharia &amp; Mecânica de Funcionamento</span>
+                  <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary">Engenharia &amp; Mecânica</span>
                 </div>
                 <p class="font-body-md text-on-surface-variant leading-relaxed">Articulação mecânica toggle-link acionada pelo guarda-mato com elevador de cartuchos em latão usinado.</p>
               </div>
@@ -572,7 +609,7 @@
               <div class="flex flex-col gap-1.5 pt-space-xs">
                 <div class="flex items-center gap-2">
                   <span class="material-symbols-outlined text-secondary text-[18px]">precision_manufacturing</span>
-                  <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary">Engenharia &amp; Mecânica de Funcionamento</span>
+                  <span class="font-label-caps text-[11px] uppercase tracking-wider text-secondary">Engenharia &amp; Mecânica</span>
                 </div>
                 <p class="font-body-md text-on-surface-variant leading-relaxed">Cano recuante com compensador em ponta de flecha com câmaras duplas que dissipa quase 70% da energia de recuo.</p>
               </div>
@@ -580,235 +617,300 @@
           </article>
 
         </div>
-      </div><section class="max-w-7xl mx-auto px-gutter pb-margin w-full"><div class="bg-surface-container-low border border-outline-variant/30 rounded-2xl p-space-lg md:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-space-lg shadow-lg"><div class="flex items-start gap-space-md"><div class="w-10 h-10 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center shrink-0 mt-0.5 text-primary"><span class="material-symbols-outlined text-[22px]">menu_book</span></div><div class="flex flex-col gap-1"><div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span><span class="font-label-caps text-[11px] uppercase tracking-wider text-primary font-semibold">Nota Balística &amp; Didática</span></div><p class="font-body-md text-on-surface-variant max-w-4xl text-sm leading-relaxed">As análises acima enfocam exclusivamente a mecânica e a evolução dos sistemas de ignição, trancamento, ignição por foguete e alimentação de culatra. Para orientações legais, aquisição ou consulta de clubes credenciados para prática esportiva formal segundo as diretrizes dos órgãos de controle, utilize os módulos de navegação do portal.</p></div></div><div class="shrink-0 flex flex-wrap items-center gap-space-sm"><a class="inline-flex items-center gap-2 px-space-md py-space-sm rounded-lg bg-primary-container hover:bg-primary text-on-primary-container font-label-caps text-[11px] uppercase tracking-wider transition-colors shadow-sm" href="#locais-de-venda"><span class="material-symbols-outlined text-[16px]">location_on</span>Ver Locais de Venda &amp; Armarias Credenciadas</a><a class="inline-flex items-center gap-2 px-space-md py-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high border border-outline-variant/30 text-primary font-label-caps text-[11px] uppercase tracking-wider transition-colors hover:border-primary/40" href="#guia-legal"><span class="material-symbols-outlined text-[16px]">gavel</span>Guia Legal de Aquisição →</a></div></div></section>
+      </div>
+
+      <section class="max-w-7xl mx-auto px-6 lg:px-12 pb-margin w-full">
+        <div class="bg-surface-container-low border border-outline-variant/30 rounded-2xl p-space-lg md:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-space-lg shadow-lg">
+          <div class="flex items-start gap-space-md">
+            <div class="w-10 h-10 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center shrink-0 mt-0.5 text-primary">
+              <span class="material-symbols-outlined text-[22px]">menu_book</span>
+            </div>
+            <div class="flex flex-col gap-1">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                <span class="font-label-caps text-[11px] uppercase tracking-wider text-primary font-semibold">Nota Balística &amp; Didática</span>
+              </div>
+              <p class="font-body-md text-on-surface-variant max-w-4xl text-sm leading-relaxed">
+                As análises acima enfocam exclusivamente a mecânica e a evolução dos sistemas de ignição, trancamento e alimentação de culatra. Para orientações legais, aquisição ou consulta de clubes credenciados, utilize os módulos de navegação do portal.
+              </p>
+            </div>
+          </div>
+          <div class="shrink-0 flex flex-wrap items-center gap-space-sm">
+            <a class="inline-flex items-center gap-2 px-space-md py-space-sm rounded-lg bg-primary-container hover:bg-primary text-on-primary-container font-label-caps text-[11px] uppercase tracking-wider transition-colors shadow-sm" href="pagina_de_venda.html">
+              <span class="material-symbols-outlined text-[16px]">location_on</span>Ver Locais de Venda
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 
-  <!-- ======================================================== -->
-  <!-- MODAL DE INSPEÇÃO TÉCNICA COM ISOLAMENTO VISUAL          -->
-  <!-- ======================================================== -->
-  <div class="fixed inset-0 z-50 items-center justify-center p-2 sm:p-4 md:p-6 transition-all duration-300 backdrop-blur-[18px] bg-black/85 opacity-0 pointer-events-none hidden" id="inspectModal">
-    <div class="relative w-full max-w-6xl max-h-[95vh] overflow-y-auto bg-surface-container-lowest/95 border border-outline-variant/40 rounded-2xl shadow-[0_25px_60px_rgba(0,0,0,0.85)] flex flex-col transition-all transform duration-300 scale-95" id="modalDialog">
+  <!-- MODAL DE INSPEÇÃO BALÍSTICA (RESTAURADO) -->
+  <div id="inspectModal" class="hidden opacity-0 pointer-events-none fixed inset-0 z-[99999] bg-surface-container-lowest/90 backdrop-blur-2xl transition-all duration-300 flex items-center justify-center p-4 sm:p-6">
+    <div id="modalDialog" class="relative w-full max-w-5xl bg-surface-container-low border border-primary/30 rounded-2xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] overflow-hidden flex flex-col max-h-[90vh] transition-transform duration-300 scale-95">
       
       <!-- Modal Header -->
-      <div class="flex items-center justify-between px-space-lg py-space-md border-b border-outline-variant/30 bg-surface-container-low/90 sticky top-0 z-30 backdrop-blur-md">
-        <div class="flex items-center gap-space-sm">
-          <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
-          <div class="flex flex-col">
-            <span class="font-label-caps text-[11px] uppercase tracking-widest text-primary" id="modalSubtitle">Sistema Portátil Anticarro Sem Recuo • Ogivas PG-7</span>
-            <h2 class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-tight" id="modalTitle">Bazuca &amp; Lançador RPG-7 (40mm)</h2>
+      <div class="flex items-center justify-between px-6 py-4 bg-surface-container-high/60 border-b border-outline-variant/30 shrink-0">
+        <div class="flex flex-col">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            <span id="modalTechOrigin" class="font-label-caps text-[10px] text-primary uppercase tracking-widest font-semibold"></span>
           </div>
+          <h2 id="modalTitle" class="font-headline-md text-lg sm:text-xl text-on-surface uppercase tracking-tight font-bold"></h2>
+          <p id="modalSubtitle" class="font-body-sm text-xs text-on-surface-variant"></p>
         </div>
-        <div class="flex items-center gap-space-sm">
-          <div class="hidden sm:flex items-center gap-1.5 text-on-surface-variant font-label-mono text-[12px] px-3 py-1 bg-surface-container rounded-lg border border-outline-variant/30">
-            <span class="material-symbols-outlined text-[15px] text-primary">filter_center_focus</span> Isolamento Ativo
-          </div>
-          <button class="w-10 h-10 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface hover:text-primary transition-colors flex items-center justify-center border border-outline-variant/30" id="closeModalBtn" title="Fechar (Esc)">
-            <span class="material-symbols-outlined text-[22px]">close</span>
-          </button>
-        </div>
+        <button id="closeModalBtn" aria-label="Fechar Inspeção" class="w-9 h-9 rounded-full bg-surface-container hover:bg-surface-bright text-on-surface-variant hover:text-primary transition-all flex items-center justify-center focus:outline-none cursor-pointer">
+          <span class="material-symbols-outlined text-[22px]">close</span>
+        </button>
       </div>
 
-      <!-- Interactive Canvas Stage -->
-      <div class="p-space-md sm:p-space-lg flex flex-col gap-space-lg">
-        <div class="relative w-full aspect-[16/9] min-h-[340px] max-h-[560px] rounded-xl overflow-hidden bg-black/70 border border-outline-variant/30 flex items-center justify-center shadow-inner group/canvas" id="canvasContainer">
-          <!-- Background Grid & Subtle Lighting -->
-          <div class="absolute inset-0 bg-[radial-gradient(#e9c176_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none"></div>
-          <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-primary/5 pointer-events-none"></div>
-          
-          <!-- Weapon Image -->
-          <img alt="Bazuca &amp; Lançador RPG-7 (40mm)" class="w-full h-full object-cover select-none pointer-events-none drop-shadow-[0_20px_30px_rgba(0,0,0,0.9)]" id="modalImg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiFZQkwFok5Ostc2Gre6GLf141RSYOOUfSDMXe09ylR7zIAFsHNnc9EEXMIXVn7mnRNqq77_6t15C4PuZ6TnuLdfHEXnaXn0TncpUT7L5Knq7B4EL_ahuSStu2T3RQyrcBdE6z70v1rwdjPpMU_UX9XHf2ggGrT8Tmi2XPyfVR1FPgLS6RBih7JrlDpjZcxTD8CN5C2TjQppYx6R6kfcvXR7ej5o-gu_esf0YGx4E">
-
-          <!-- Hotspots Container -->
-          <div class="absolute inset-0 w-full h-full pointer-events-auto" id="hotspotsContainer"><div class="hotspot-pin absolute -translate-x-1/2 -translate-y-1/2 z-20 cursor-pointer select-none" data-spot-id="1" tabindex="0" style="left: 22%; top: 55%;">
-            <div class="relative flex items-center justify-center">
-              <span class="hotspot-pulse absolute w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/40 pointer-events-none"></span>
-              <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary text-on-primary font-headline-sm text-[12px] sm:text-[13px] font-bold flex items-center justify-center shadow-xl shadow-black/90 border-2 border-surface-container-lowest">
-                1
-              </div>
-
-              <!-- Balão de Anotação Calibrado -->
-              <div class="hotspot-tooltip absolute bottom-10 left-0 sm:-left-4 origin-bottom-left w-64 sm:w-72 p-3.5 rounded-xl bg-surface-container-lowest/98 backdrop-blur-md border border-primary/50 shadow-[0_20px_45px_rgba(0,0,0,0.95)] opacity-0 pointer-events-none scale-95 transition-all duration-200 z-50">
-                <div class="flex items-center gap-1.5 pb-1 border-b border-outline-variant/30 mb-1.5">
-                  <span class="w-2 h-2 rounded-full bg-primary"></span>
-                  <span class="font-label-caps text-[10px] text-primary uppercase font-bold tracking-wider">Ponto 01 • Mecanismo</span>
-                </div>
-                <h4 class="font-headline-sm text-[13px] text-on-surface uppercase tracking-tight font-semibold leading-tight">Tubo de Venturi Traseiro (Sem Recuo)</h4>
-                <p class="font-body-sm text-[11px] sm:text-[12px] text-on-surface-variant mt-1.5 leading-relaxed">Bocal cônico que direciona gases em alta velocidade para trás, criando contragolpe de expansão que anula a força de recuo no ombro.</p>
-              </div>
-            </div>
-          </div><div class="hotspot-pin absolute -translate-x-1/2 -translate-y-1/2 z-20 cursor-pointer select-none" data-spot-id="2" tabindex="0" style="left: 49%; top: 58%;">
-            <div class="relative flex items-center justify-center">
-              <span class="hotspot-pulse absolute w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/40 pointer-events-none"></span>
-              <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary text-on-primary font-headline-sm text-[12px] sm:text-[13px] font-bold flex items-center justify-center shadow-xl shadow-black/90 border-2 border-surface-container-lowest">
-                2
-              </div>
-
-              <!-- Balão de Anotação Calibrado -->
-              <div class="hotspot-tooltip absolute top-10 left-0 sm:-left-4 origin-top-left w-64 sm:w-72 p-3.5 rounded-xl bg-surface-container-lowest/98 backdrop-blur-md border border-primary/50 shadow-[0_20px_45px_rgba(0,0,0,0.95)] transition-all duration-200 z-50 opacity-0 pointer-events-none scale-95">
-                <div class="flex items-center gap-1.5 pb-1 border-b border-outline-variant/30 mb-1.5">
-                  <span class="w-2 h-2 rounded-full bg-primary"></span>
-                  <span class="font-label-caps text-[10px] text-primary uppercase font-bold tracking-wider">Ponto 02 • Mecanismo</span>
-                </div>
-                <h4 class="font-headline-sm text-[13px] text-on-surface uppercase tracking-tight font-semibold leading-tight">Punho Pistola e Gatilho Percussor</h4>
-                <p class="font-body-sm text-[11px] sm:text-[12px] text-on-surface-variant mt-1.5 leading-relaxed">Mecanismo mecânico de mola e cão interno com trava de travessão que percute a cápsula do propelente inicial do tubo.</p>
-              </div>
-            </div>
-          </div><div class="hotspot-pin absolute -translate-x-1/2 -translate-y-1/2 z-20 cursor-pointer select-none" data-spot-id="3" tabindex="0" style="left: 56%; top: 35%;">
-            <div class="relative flex items-center justify-center">
-              <span class="hotspot-pulse absolute w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/40 pointer-events-none"></span>
-              <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary text-on-primary font-headline-sm text-[12px] sm:text-[13px] font-bold flex items-center justify-center shadow-xl shadow-black/90 border-2 border-surface-container-lowest">
-                3
-              </div>
-
-              <!-- Balão de Anotação Calibrado -->
-              <div class="hotspot-tooltip absolute bottom-10 left-1/2 -translate-x-1/2 origin-bottom w-64 sm:w-72 p-3.5 rounded-xl bg-surface-container-lowest/98 backdrop-blur-md border border-primary/50 shadow-[0_20px_45px_rgba(0,0,0,0.95)] opacity-0 pointer-events-none scale-95 transition-all duration-200 z-50">
-                <div class="flex items-center gap-1.5 pb-1 border-b border-outline-variant/30 mb-1.5">
-                  <span class="w-2 h-2 rounded-full bg-primary"></span>
-                  <span class="font-label-caps text-[10px] text-primary uppercase font-bold tracking-wider">Ponto 03 • Mecanismo</span>
-                </div>
-                <h4 class="font-headline-sm text-[13px] text-on-surface uppercase tracking-tight font-semibold leading-tight">Barramento da Mira Óptica PGO-7</h4>
-                <p class="font-body-sm text-[11px] sm:text-[12px] text-on-surface-variant mt-1.5 leading-relaxed">Trilho lateral em cauda de andorinha para luneta estadiométrica de cálculo rápido de distância e correção de deriva.</p>
-              </div>
-            </div>
-          </div><div class="hotspot-pin absolute -translate-x-1/2 -translate-y-1/2 z-20 cursor-pointer select-none" data-spot-id="4" tabindex="0" style="left: 67%; top: 44%;">
-            <div class="relative flex items-center justify-center">
-              <span class="hotspot-pulse absolute w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/40 pointer-events-none"></span>
-              <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary text-on-primary font-headline-sm text-[12px] sm:text-[13px] font-bold flex items-center justify-center shadow-xl shadow-black/90 border-2 border-surface-container-lowest">
-                4
-              </div>
-
-              <!-- Balão de Anotação Calibrado -->
-              <div class="hotspot-tooltip absolute bottom-10 right-0 sm:-right-4 origin-bottom-right w-64 sm:w-72 p-3.5 rounded-xl bg-surface-container-lowest/98 backdrop-blur-md border border-primary/50 shadow-[0_20px_45px_rgba(0,0,0,0.95)] opacity-0 pointer-events-none scale-95 transition-all duration-200 z-50">
-                <div class="flex items-center gap-1.5 pb-1 border-b border-outline-variant/30 mb-1.5">
-                  <span class="w-2 h-2 rounded-full bg-primary"></span>
-                  <span class="font-label-caps text-[10px] text-primary uppercase font-bold tracking-wider">Ponto 04 • Mecanismo</span>
-                </div>
-                <h4 class="font-headline-sm text-[13px] text-on-surface uppercase tracking-tight font-semibold leading-tight">Protetor Térmico em Madeira Laminada</h4>
-                <p class="font-body-sm text-[11px] sm:text-[12px] text-on-surface-variant mt-1.5 leading-relaxed">Revestimento isolante que resguarda a face e ombro do atirador das temperaturas extremas da queima propelente interna.</p>
-              </div>
-            </div>
-          </div><div class="hotspot-pin absolute -translate-x-1/2 -translate-y-1/2 z-20 cursor-pointer select-none" data-spot-id="5" tabindex="0" style="left: 80%; top: 35%;">
-            <div class="relative flex items-center justify-center">
-              <span class="hotspot-pulse absolute w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/40 pointer-events-none"></span>
-              <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary text-on-primary font-headline-sm text-[12px] sm:text-[13px] font-bold flex items-center justify-center shadow-xl shadow-black/90 border-2 border-surface-container-lowest">
-                5
-              </div>
-
-              <!-- Balão de Anotação Calibrado -->
-              <div class="hotspot-tooltip absolute bottom-10 right-0 sm:-right-4 origin-bottom-right w-64 sm:w-72 p-3.5 rounded-xl bg-surface-container-lowest/98 backdrop-blur-md border border-primary/50 shadow-[0_20px_45px_rgba(0,0,0,0.95)] transition-all duration-200 z-50 opacity-0 pointer-events-none scale-95">
-                <div class="flex items-center gap-1.5 pb-1 border-b border-outline-variant/30 mb-1.5">
-                  <span class="w-2 h-2 rounded-full bg-primary"></span>
-                  <span class="font-label-caps text-[10px] text-primary uppercase font-bold tracking-wider">Ponto 05 • Mecanismo</span>
-                </div>
-                <h4 class="font-headline-sm text-[13px] text-on-surface uppercase tracking-tight font-semibold leading-tight">Boca do Tubo Lançador (40mm)</h4>
-                <p class="font-body-sm text-[11px] sm:text-[12px] text-on-surface-variant mt-1.5 leading-relaxed">Câmara usinada de alma lisa para encaixe de antecarga da haste propelente da granada foguete.</p>
-              </div>
-            </div>
-          </div><div class="hotspot-pin absolute -translate-x-1/2 -translate-y-1/2 z-20 cursor-pointer select-none" data-spot-id="6" tabindex="0" style="left: 88%; top: 54%;">
-            <div class="relative flex items-center justify-center">
-              <span class="hotspot-pulse absolute w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/40 pointer-events-none"></span>
-              <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary text-on-primary font-headline-sm text-[12px] sm:text-[13px] font-bold flex items-center justify-center shadow-xl shadow-black/90 border-2 border-surface-container-lowest">
-                6
-              </div>
-
-              <!-- Balão de Anotação Calibrado -->
-              <div class="hotspot-tooltip absolute top-10 right-0 sm:-right-4 origin-top-right w-64 sm:w-72 p-3.5 rounded-xl bg-surface-container-lowest/98 backdrop-blur-md border border-primary/50 shadow-[0_20px_45px_rgba(0,0,0,0.95)] opacity-0 pointer-events-none scale-95 transition-all duration-200 z-50">
-                <div class="flex items-center gap-1.5 pb-1 border-b border-outline-variant/30 mb-1.5">
-                  <span class="w-2 h-2 rounded-full bg-primary"></span>
-                  <span class="font-label-caps text-[10px] text-primary uppercase font-bold tracking-wider">Ponto 06 • Mecanismo</span>
-                </div>
-                <h4 class="font-headline-sm text-[13px] text-on-surface uppercase tracking-tight font-semibold leading-tight">Ogiva de Carga Oca PG-7 (HEAT)</h4>
-                <p class="font-body-sm text-[11px] sm:text-[12px] text-on-surface-variant mt-1.5 leading-relaxed">Projétil balístico com cone oco metálico que forma jato de plasma penetrante capaz de perfurar blindagens pesadas.</p>
-              </div>
-            </div>
-          </div></div>
-
-          <!-- Bottom Visual Instruction -->
-          <div class="absolute bottom-3 left-4 px-3 py-1.5 rounded-lg bg-surface-container-lowest/85 backdrop-blur-md border border-outline-variant/30 text-on-surface-variant font-label-mono text-[11px] flex items-center gap-2 pointer-events-none">
-            <span class="material-symbols-outlined text-primary text-[14px]">touch_app</span>
-            Passe o mouse no número: os outros marcadores se ocultam automaticamente para total foco no componente.
+      <!-- Modal Body (Grid: Imagem interativa + Legenda) -->
+      <div class="flex-1 overflow-y-auto p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Área da Imagem com Hotspots -->
+        <div class="lg:col-span-8 flex flex-col items-center justify-center bg-surface-container-lowest border border-outline-variant/20 rounded-xl p-4 relative min-h-[280px] sm:min-h-[360px] overflow-hidden select-none">
+          <div class="relative w-full h-full flex items-center justify-center">
+            <img id="modalImg" src="" alt="Arma" class="max-h-[340px] sm:max-h-[420px] w-auto object-contain mx-auto">
+            <!-- Container dinâmico dos hotspots -->
+            <div id="hotspotsContainer" class="absolute inset-0 w-full h-full pointer-events-auto"></div>
+          </div>
+          <div class="absolute bottom-2 left-3 flex items-center gap-1.5 text-outline-variant text-[10px] font-label-mono">
+            <span class="material-symbols-outlined text-[14px] text-primary">touch_app</span>
+            Passe o cursor ou toque nos pontos numerados para detalhes técnicos
           </div>
         </div>
 
-        <!-- Legend and Component List -->
-        <div class="flex flex-col gap-space-sm bg-surface-container-low/60 p-space-md rounded-xl border border-outline-variant/20">
-          <div class="flex items-center justify-between">
-            <span class="font-label-caps text-[11px] uppercase text-primary tracking-wider flex items-center gap-1.5">
-              <span class="material-symbols-outlined text-[16px]">format_list_numbered</span>
-              Componentes e Mecanismos da Plataforma
-            </span>
-            <span class="font-label-mono text-[12px] text-on-surface-variant" id="modalTechOrigin">URSS • Calibre 40mm / Ogivas até 105mm</span>
+        <!-- Lista de Legendas e Componentes -->
+        <div class="lg:col-span-4 flex flex-col bg-surface-container-lowest/50 border border-outline-variant/20 rounded-xl p-4">
+          <div class="flex items-center justify-between pb-2 border-b border-outline-variant/30 mb-3">
+            <span class="font-label-caps text-[11px] text-primary uppercase tracking-wider font-semibold">Componentes Inspecionados</span>
+            <span class="font-label-mono text-[10px] text-outline">6 HOTSPOTS</span>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-sm pt-space-xs" id="hotspotsLegendList"><div class="flex items-start gap-2.5 p-2 rounded-lg bg-surface-container/60 hover:bg-surface-container border border-outline-variant/20 hover:border-primary/40 transition-colors cursor-pointer group/leg">
-            <span class="w-5 h-5 rounded-full bg-primary/20 text-primary group-hover/leg:bg-primary group-hover/leg:text-on-primary font-headline-sm text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5 transition-colors">
-              1
-            </span>
-            <div class="flex flex-col">
-              <span class="font-headline-sm text-[12px] text-on-surface uppercase font-medium leading-snug group-hover/leg:text-primary transition-colors">Tubo de Venturi Traseiro (Sem Recuo)</span>
-              <span class="font-body-sm text-[11px] text-on-surface-variant line-clamp-2 leading-relaxed mt-0.5">Bocal cônico que direciona gases em alta velocidade para trás, criando contragolpe de expansão que anula a força de recuo no ombro.</span>
-            </div>
-          </div><div class="flex items-start gap-2.5 p-2 rounded-lg bg-surface-container/60 hover:bg-surface-container border border-outline-variant/20 hover:border-primary/40 transition-colors cursor-pointer group/leg">
-            <span class="w-5 h-5 rounded-full bg-primary/20 text-primary group-hover/leg:bg-primary group-hover/leg:text-on-primary font-headline-sm text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5 transition-colors">
-              2
-            </span>
-            <div class="flex flex-col">
-              <span class="font-headline-sm text-[12px] text-on-surface uppercase font-medium leading-snug group-hover/leg:text-primary transition-colors">Punho Pistola e Gatilho Percussor</span>
-              <span class="font-body-sm text-[11px] text-on-surface-variant line-clamp-2 leading-relaxed mt-0.5">Mecanismo mecânico de mola e cão interno com trava de travessão que percute a cápsula do propelente inicial do tubo.</span>
-            </div>
-          </div><div class="flex items-start gap-2.5 p-2 rounded-lg bg-surface-container/60 hover:bg-surface-container border border-outline-variant/20 hover:border-primary/40 transition-colors cursor-pointer group/leg">
-            <span class="w-5 h-5 rounded-full bg-primary/20 text-primary group-hover/leg:bg-primary group-hover/leg:text-on-primary font-headline-sm text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5 transition-colors">
-              3
-            </span>
-            <div class="flex flex-col">
-              <span class="font-headline-sm text-[12px] text-on-surface uppercase font-medium leading-snug group-hover/leg:text-primary transition-colors">Barramento da Mira Óptica PGO-7</span>
-              <span class="font-body-sm text-[11px] text-on-surface-variant line-clamp-2 leading-relaxed mt-0.5">Trilho lateral em cauda de andorinha para luneta estadiométrica de cálculo rápido de distância e correção de deriva.</span>
-            </div>
-          </div><div class="flex items-start gap-2.5 p-2 rounded-lg bg-surface-container/60 hover:bg-surface-container border border-outline-variant/20 hover:border-primary/40 transition-colors cursor-pointer group/leg">
-            <span class="w-5 h-5 rounded-full bg-primary/20 text-primary group-hover/leg:bg-primary group-hover/leg:text-on-primary font-headline-sm text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5 transition-colors">
-              4
-            </span>
-            <div class="flex flex-col">
-              <span class="font-headline-sm text-[12px] text-on-surface uppercase font-medium leading-snug group-hover/leg:text-primary transition-colors">Protetor Térmico em Madeira Laminada</span>
-              <span class="font-body-sm text-[11px] text-on-surface-variant line-clamp-2 leading-relaxed mt-0.5">Revestimento isolante que resguarda a face e ombro do atirador das temperaturas extremas da queima propelente interna.</span>
-            </div>
-          </div><div class="flex items-start gap-2.5 p-2 rounded-lg bg-surface-container/60 hover:bg-surface-container border border-outline-variant/20 hover:border-primary/40 transition-colors cursor-pointer group/leg">
-            <span class="w-5 h-5 rounded-full bg-primary/20 text-primary group-hover/leg:bg-primary group-hover/leg:text-on-primary font-headline-sm text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5 transition-colors">
-              5
-            </span>
-            <div class="flex flex-col">
-              <span class="font-headline-sm text-[12px] text-on-surface uppercase font-medium leading-snug group-hover/leg:text-primary transition-colors">Boca do Tubo Lançador (40mm)</span>
-              <span class="font-body-sm text-[11px] text-on-surface-variant line-clamp-2 leading-relaxed mt-0.5">Câmara usinada de alma lisa para encaixe de antecarga da haste propelente da granada foguete.</span>
-            </div>
-          </div><div class="flex items-start gap-2.5 p-2 rounded-lg bg-surface-container/60 hover:bg-surface-container border border-outline-variant/20 hover:border-primary/40 transition-colors cursor-pointer group/leg">
-            <span class="w-5 h-5 rounded-full bg-primary/20 text-primary group-hover/leg:bg-primary group-hover/leg:text-on-primary font-headline-sm text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5 transition-colors">
-              6
-            </span>
-            <div class="flex flex-col">
-              <span class="font-headline-sm text-[12px] text-on-surface uppercase font-medium leading-snug group-hover/leg:text-primary transition-colors">Ogiva de Carga Oca PG-7 (HEAT)</span>
-              <span class="font-body-sm text-[11px] text-on-surface-variant line-clamp-2 leading-relaxed mt-0.5">Projétil balístico com cone oco metálico que forma jato de plasma penetrante capaz de perfurar blindagens pesadas.</span>
-            </div>
-          </div></div>
+          <div id="hotspotsLegendList" class="flex flex-col gap-2 overflow-y-auto max-h-[340px] pr-1"></div>
         </div>
+
       </div>
 
       <!-- Modal Footer -->
-      <div class="px-space-lg py-space-md border-t border-outline-variant/30 bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-space-sm">
-        <div class="text-on-surface-variant font-label-mono text-[12px] text-center sm:text-left">
-          Pressione <kbd class="px-1.5 py-0.5 rounded bg-surface-container text-primary font-mono text-[11px]">ESC</kbd> ou clique fora da moldura para fechar.
-        </div>
-        <button class="px-space-md py-space-xs rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-caps text-[11px] uppercase tracking-wider transition-colors" id="closeModalBottomBtn">
-          Fechar Inspeção
+      <div class="px-6 py-3 bg-surface-container-high/40 border-t border-outline-variant/30 flex items-center justify-between shrink-0">
+        <span class="font-label-mono text-[11px] text-outline">Pistas de inspecção e análise funcional da plataforma</span>
+        <button id="closeModalBottomBtn" type="button" class="px-4 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-highest text-on-surface text-xs font-label-caps uppercase tracking-wider transition-colors cursor-pointer">
+          Concluir Inspeção
         </button>
       </div>
 
     </div>
   </div>
 
-  <!-- Dynamic Logic & Hotspot Engine -->
+  <!-- MODAL DE LOGIN E RECUPERAÇÃO DE SENHA -->
+  <div class="fixed inset-0 z-[9999] min-h-screen w-full items-center justify-center p-4 sm:p-6" id="login-modal" style="display: none; background: rgba(13, 14, 17, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);">
+    <div class="relative w-full max-w-[420px] rounded-lg border border-primary/40 bg-surface-container-low p-6 sm:p-8 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.85)]" onclick="event.stopPropagation();">
+      <button aria-label="Fechar" class="absolute top-5 right-5 text-outline hover:text-primary transition-colors focus:outline-none flex items-center justify-center p-1 rounded z-10" id="close-login-btn" onclick="closeLoginModal()" type="button">
+        <span class="material-symbols-outlined text-[24px]">close</span>
+      </button>
+
+      <!-- VIEW 1: LOGIN -->
+      <div id="auth-view-login">
+        <div class="mb-6">
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+            <span class="font-label-caps text-label-caps uppercase text-primary tracking-widest">ACESSO RESTRITO</span>
+          </div>
+          <h3 class="font-headline-md text-headline-md uppercase text-on-surface tracking-tight">LOGIN</h3>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Entre com suas credenciais para acessar a área do atirador</p>
+        </div>
+        <form class="space-y-4" onsubmit="event.preventDefault();">
+          <div>
+            <label class="block font-label-caps text-label-caps uppercase text-outline mb-1.5" for="loginIdentifier">E-mail ou CPF</label>
+            <div class="flex items-center gap-2 px-3.5 py-2.5 rounded bg-surface-container-lowest border border-outline-variant/40 focus-within:border-primary transition-colors">
+              <span class="material-symbols-outlined text-outline text-[18px]">badge</span>
+              <input class="w-full bg-transparent text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none" id="loginIdentifier" placeholder="E-mail ou CPF" type="text">
+            </div>
+          </div>
+          <div>
+            <label class="block font-label-caps text-label-caps uppercase text-outline mb-1.5" for="loginPassword">Senha</label>
+            <div class="flex items-center gap-2 px-3.5 py-2.5 rounded bg-surface-container-lowest border border-outline-variant/40 focus-within:border-primary transition-colors">
+              <span class="material-symbols-outlined text-outline text-[18px]">key</span>
+              <input class="w-full bg-transparent text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none" id="loginPassword" placeholder="••••••••" type="password">
+            </div>
+          </div>
+          <div class="flex items-center justify-end text-body-sm pt-1">
+            <button class="text-primary hover:underline text-[13px] font-medium transition-colors bg-transparent border-0 p-0 cursor-pointer" onclick="showAuthView('forgot')" type="button">Esqueceu a senha?</button>
+          </div>
+          <div class="pt-2">
+            <button class="hover:brightness-110 uppercase font-headline-sm text-headline-sm tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg w-full py-3 rounded bg-primary text-surface-container-lowest font-bold" type="submit">
+              <span class="">LOGIN</span>
+              <span class="material-symbols-outlined text-[18px]">login</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- VIEW 2: RECUPERAR SENHA -->
+      <div id="auth-view-forgot" style="display: none;">
+        <div class="mb-6">
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+            <span class="font-label-caps text-label-caps uppercase text-primary tracking-widest">RECUPERAÇÃO DE ACESSO</span>
+          </div>
+          <h3 class="font-headline-md text-headline-md uppercase text-on-surface tracking-tight">RECUPERAR SENHA</h3>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Informe seus dados para receber as instruções de recuperação</p>
+        </div>
+        <form class="space-y-4" id="recovery-form" onsubmit="event.preventDefault(); submitRecovery();">
+          <div>
+            <label class="block font-label-caps text-label-caps uppercase text-outline mb-1.5" for="recoveryEmail">E-mail</label>
+            <div class="flex items-center gap-2 px-3.5 py-2.5 rounded bg-surface-container-lowest border border-outline-variant/40 focus-within:border-primary transition-colors">
+              <span class="material-symbols-outlined text-outline text-[18px]">mail</span>
+              <input class="w-full bg-transparent text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none" id="recoveryEmail" placeholder="E-mail" required="" type="email">
+            </div>
+          </div>
+          <div>
+            <label class="block font-label-caps text-label-caps uppercase text-outline mb-1.5" for="recoveryCpf">CPF</label>
+            <div class="flex items-center gap-2 px-3.5 py-2.5 rounded bg-surface-container-lowest border border-outline-variant/40 focus-within:border-primary transition-colors">
+              <span class="material-symbols-outlined text-outline text-[18px]">badge</span>
+              <input class="w-full bg-transparent text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none" id="recoveryCpf" placeholder="CPF" required="" type="text">
+            </div>
+          </div>
+          <div class="pt-2">
+            <button class="hover:brightness-110 uppercase font-headline-sm text-headline-sm tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg w-full py-3 rounded bg-primary text-surface-container-lowest font-bold" id="btn-recovery-submit" onclick="submitRecovery(event)" type="button">
+              <span class="">Enviar</span>
+              <span class="material-symbols-outlined text-[18px]">send</span>
+            </button>
+          </div>
+          <div class="pt-2 text-center">
+            <button class="text-on-surface-variant hover:text-primary text-[13px] inline-flex items-center gap-1 transition-colors bg-transparent border-0 cursor-pointer" onclick="showAuthView('login')" type="button">
+              <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+              <span class="">Voltar ao login</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- VIEW 3: CONFIRMAÇÃO DE RECUPERAÇÃO -->
+      <div class="text-center py-4" id="auth-view-success" style="display: none;">
+        <div class="w-14 h-14 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary mx-auto mb-4">
+          <span class="material-symbols-outlined text-[32px]">mark_email_read</span>
+        </div>
+        <h3 class="font-headline-md text-headline-md uppercase text-on-surface tracking-tight mb-2">SOLICITAÇÃO RECEBIDA</h3>
+        <p class="font-body-md text-body-md text-primary font-medium mb-3">Verifique seu e-mail para dar seguimento</p>
+        <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed max-w-sm mx-auto mb-6">
+          Enviamos um link de redefinição com validade de 30 minutos para o endereço informado.
+        </p>
+        <div class="space-y-2">
+          <button class="hover:brightness-110 uppercase font-headline-sm text-headline-sm tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg w-full py-3 rounded bg-primary text-surface-container-lowest font-bold" onclick="showAuthView('login')" type="button">
+            <span class="">Voltar ao login</span>
+          </button>
+          <button class="text-on-surface-variant hover:text-on-surface text-[13px] py-2 inline-flex items-center gap-1 transition-colors bg-transparent border-0 cursor-pointer" onclick="closeLoginModal()" type="button">
+            <span class="">Fechar janela</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER UNIFICADO -->
+  <footer class="w-full bg-surface-container-lowest border-t border-outline-variant/20">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 pt-16 pb-12">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-space-xl pb-space-lg border-b border-outline-variant/20">
+        <div class="md:col-span-5 space-y-space-sm">
+          <div class="flex items-center gap-space-sm">
+            <span class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-wide">BALÍSTICA</span>
+            <span class="px-2 py-0.5 rounded bg-surface-container text-primary font-label-caps text-label-caps border border-outline-variant/20">HOMOLOGADO</span>
+          </div>
+          <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed max-w-md">
+            Plataforma institucional de orientação técnica balística, mapeamento de clubes cadastrados e consulta a estabelecimentos credenciados sob normas vigentes.
+          </p>
+          <div class="pt-space-xs">
+            <p class="font-label-caps text-label-caps text-outline uppercase">SEGURANÇA • CUSTÓDIA • CONFORMIDADE TÉCNICA</p>
+          </div>
+        </div>
+
+        <div class="md:col-span-3 space-y-space-sm">
+          <p class="font-label-caps text-label-caps uppercase text-primary tracking-widest">PORTAL DE ORIENTAÇÃO</p>
+          <nav class="flex flex-col space-y-space-xs">
+            <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="pagina_de_armas.html">Armas e Calibres Técnicos</a>
+            <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="pagina_de_venda.html">Locais de Venda Certificados</a>
+            <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="pagina_de_clubes.html">Clubes de Tiro Registrados</a>
+            <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="pagina_inicial.html">Diretrizes de Manuseio Seguro</a>
+          </nav>
+        </div>
+
+        <div class="md:col-span-4 space-y-space-sm">
+          <p class="font-label-caps text-label-caps uppercase text-primary tracking-widest">AVISO DE CONFORMIDADE LEGAL</p>
+          <div class="bg-surface-container-low p-space-md rounded-lg space-y-space-xs border border-outline-variant/30">
+            <p class="font-body-sm text-body-sm text-on-surface leading-normal">
+              A aquisição, posse e porte de armas de fogo e munições dependem de autorização prévia dos órgãos governamentais e de segurança pública competentes.
+            </p>
+            <p class="font-label-mono text-label-mono text-outline">
+              Armazene armamento e munições sempre desmuniciados e trancados em local seguro.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-space-sm text-on-surface-variant">
+        <span class="font-label-mono text-label-mono text-outline">© 2024 BALÍSTICA OFICIAL • TODOS OS DIREITOS RESERVADOS.</span>
+        <div class="flex items-center gap-space-lg">
+          <a class="font-label-mono text-label-mono text-outline hover:text-primary transition-colors" href="#">Normas &amp; Termos</a>
+          <a class="font-label-mono text-label-mono text-outline hover:text-primary transition-colors" href="#">Privacidade</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
   <script>
+    // 1. Script do Modal de Login
+    window.showAuthView = function(view) {
+      const loginView = document.getElementById('auth-view-login');
+      const forgotView = document.getElementById('auth-view-forgot');
+      const successView = document.getElementById('auth-view-success');
+
+      if (loginView) loginView.style.display = view === 'login' ? 'block' : 'none';
+      if (forgotView) forgotView.style.display = view === 'forgot' ? 'block' : 'none';
+      if (successView) successView.style.display = view === 'success' ? 'block' : 'none';
+    };
+
+    window.submitRecovery = function(e) {
+      if (e && typeof e.preventDefault === 'function') e.preventDefault();
+      window.showAuthView('success');
+    };
+
+    window.openLoginModal = function() {
+      const modal = document.getElementById('login-modal');
+      if (modal) {
+        modal.style.display = 'flex';
+        window.showAuthView('login');
+      }
+    };
+
+    window.closeLoginModal = function() {
+      const modal = document.getElementById('login-modal');
+      if (modal) modal.style.display = 'none';
+    };
+
     (function() {
-      // Base de dados calibrada com coordenadas e posições seguras (pos) que não colidem
+      const modal = document.getElementById('login-modal');
+      const userBtn = document.getElementById('user-login-btn');
+      const closeBtn = document.getElementById('close-login-btn');
+
+      if (userBtn) userBtn.addEventListener('click', (e) => { e.preventDefault(); window.openLoginModal(); });
+      if (closeBtn) closeBtn.addEventListener('click', (e) => { e.preventDefault(); window.closeLoginModal(); });
+
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) window.closeLoginModal();
+        });
+      }
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal && modal.style.display === 'flex') {
+          window.closeLoginModal();
+        }
+      });
+    })();
+
+    // 2. SCRIPTS DA PÁGINA DE ARMAS & MODAL DE INSPEÇÃO TÉCNICA
+    (function() {
       const WEAPONS_DATA = {
         'pistola': {
           title: 'Glock 17 — Pistola Semiautomática (9x19mm)',
@@ -816,36 +918,12 @@
           image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDaJXbYDyWK2IIVyLCrHEauk78i0PKjTLicmOP_MhrEkGhIlNdT4xKtHamPtRUT0tnoM6a-ZLXov_DgNAqHuOPK1z1ORFUfXpOpTkXpFMJJ_8otHbxrEt3Ibx7k_6XyM6HQVB8S15rwqqCj1DfaHd3H27B51T6JhGlrwKa_9jOJDzfbNzsIZBeS7GSIDLNbJjgdqk9zlcKg3gYO7ivOjqDlzeHxwK4IJuXy1HJfqOo',
           origin: 'Áustria • Calibre 9x19mm Parabellum',
           hotspots: [
-            {
-              id: 1, x: 23, y: 32, pos: 'top-left',
-              title: 'Cano e Boca de Disparo (9mm)',
-              desc: 'Cano de 114mm com estriamento poligonal que confere vedação de gases superior e aceleração uniforme ao projétil.'
-            },
-            {
-              id: 2, x: 42, y: 24, pos: 'top-center',
-              title: 'Ferrolho em Aço com Tratamento Tenifer',
-              desc: 'Slide monolítico usinado com acabamento de alta dureza superficial, imune a oxidação e desgaste abrasivo severo.'
-            },
-            {
-              id: 3, x: 58, y: 28, pos: 'top-right',
-              title: 'Janela de Ejeção e Extrator Ativo',
-              desc: 'Porta de descarte de cápsulas deflagradas com dente extrator que atua simultaneamente como indicador tátil de cartucho na câmara.'
-            },
-            {
-              id: 4, x: 47, y: 55, pos: 'bottom-left',
-              title: 'Gatilho com Trava Safe Action',
-              desc: 'Lâmina com lingueta central que bloqueia mecanicamente o recuo involuntário do gatilho contra choques ou quedas.'
-            },
-            {
-              id: 5, x: 67, y: 68, pos: 'right',
-              title: 'Empunhadura em Polímero de Alta Densidade',
-              desc: 'Armação leve de náilon 6 reforçada com inserções de aço estrutural nas guias internas de deslizamento do ferrolho.'
-            },
-            {
-              id: 6, x: 82, y: 88, pos: 'bottom-right',
-              title: 'Poço do Carregador Bifilar (17 tiros)',
-              desc: 'Alojamento chanfrado projetado para trocas intuitivas de carregadores bifilares de alta capacidade em combate.'
-            }
+            { id: 1, x: 23, y: 32, pos: 'top-left', title: 'Cano e Boca de Disparo (9mm)', desc: 'Cano de 114mm com estriamento poligonal que confere vedação de gases superior.' },
+            { id: 2, x: 42, y: 24, pos: 'top-center', title: 'Ferrolho em Aço com Tratamento Tenifer', desc: 'Slide monolítico usinado com acabamento de alta dureza superficial.' },
+            { id: 3, x: 58, y: 28, pos: 'top-right', title: 'Janela de Ejeção e Extrator Ativo', desc: 'Porta de descarte de cápsulas deflagradas com dente extrator indicador de munição.' },
+            { id: 4, x: 47, y: 55, pos: 'bottom-left', title: 'Gatilho com Trava Safe Action', desc: 'Lâmina com lingueta central que bloqueia mecanicamente o recuo involuntário.' },
+            { id: 5, x: 67, y: 68, pos: 'right', title: 'Empunhadura em Polímero', desc: 'Armação leve de náilon 6 reforçada com inserções de aço estrutural.' },
+            { id: 6, x: 82, y: 88, pos: 'bottom-right', title: 'Poço do Carregador Bifilar (17 tiros)', desc: 'Alojamento chanfrado para trocas intuitivas de carregadores.' }
           ]
         },
         'bazuca': {
@@ -854,36 +932,12 @@
           image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBiFZQkwFok5Ostc2Gre6GLf141RSYOOUfSDMXe09ylR7zIAFsHNnc9EEXMIXVn7mnRNqq77_6t15C4PuZ6TnuLdfHEXnaXn0TncpUT7L5Knq7B4EL_ahuSStu2T3RQyrcBdE6z70v1rwdjPpMU_UX9XHf2ggGrT8Tmi2XPyfVR1FPgLS6RBih7JrlDpjZcxTD8CN5C2TjQppYx6R6kfcvXR7ej5o-gu_esf0YGx4E',
           origin: 'URSS • Calibre 40mm / Ogivas até 105mm',
           hotspots: [
-            {
-              id: 1, x: 22, y: 55, pos: 'top-left',
-              title: 'Tubo de Venturi Traseiro (Sem Recuo)',
-              desc: 'Bocal cônico que direciona gases em alta velocidade para trás, criando contragolpe de expansão que anula a força de recuo no ombro.'
-            },
-            {
-              id: 2, x: 49, y: 58, pos: 'bottom-left',
-              title: 'Punho Pistola e Gatilho Percussor',
-              desc: 'Mecanismo mecânico de mola e cão interno com trava de travessão que percute a cápsula do propelente inicial do tubo.'
-            },
-            {
-              id: 3, x: 56, y: 35, pos: 'top-center',
-              title: 'Barramento da Mira Óptica PGO-7',
-              desc: 'Trilho lateral em cauda de andorinha para luneta estadiométrica de cálculo rápido de distância e correção de deriva.'
-            },
-            {
-              id: 4, x: 67, y: 44, pos: 'top-right',
-              title: 'Protetor Térmico em Madeira Laminada',
-              desc: 'Revestimento isolante que resguarda a face e ombro do atirador das temperaturas extremas da queima propelente interna.'
-            },
-            {
-              id: 5, x: 80, y: 35, pos: 'top-right',
-              title: 'Boca do Tubo Lançador (40mm)',
-              desc: 'Câmara usinada de alma lisa para encaixe de antecarga da haste propelente da granada foguete.'
-            },
-            {
-              id: 6, x: 88, y: 54, pos: 'bottom-right',
-              title: 'Ogiva de Carga Oca PG-7 (HEAT)',
-              desc: 'Projétil balístico com cone oco metálico que forma jato de plasma penetrante capaz de perfurar blindagens pesadas.'
-            }
+            { id: 1, x: 22, y: 55, pos: 'top-left', title: 'Tubo de Venturi Traseiro (Sem Recuo)', desc: 'Bocal cônico que direciona gases em alta velocidade para trás, anulando o recuo.' },
+            { id: 2, x: 49, y: 58, pos: 'bottom-left', title: 'Punho Pistola e Gatilho Percussor', desc: 'Mecanismo de mola e cão interno que percute a cápsula do propelente inicial.' },
+            { id: 3, x: 56, y: 35, pos: 'top-center', title: 'Barramento da Mira Óptica PGO-7', desc: 'Trilho lateral em cauda de andorinha para luneta estadiométrica de cálculo rápido.' },
+            { id: 4, x: 67, y: 44, pos: 'top-right', title: 'Protetor Térmico em Madeira Laminada', desc: 'Revestimento isolante que resguarda a face e ombro do atirador das temperaturas.' },
+            { id: 5, x: 80, y: 35, pos: 'top-right', title: 'Boca do Tubo Lançador (40mm)', desc: 'Câmara usinada de alma lisa para encaixe da granada foguete.' },
+            { id: 6, x: 88, y: 54, pos: 'bottom-right', title: 'Ogiva de Carga Oca PG-7 (HEAT)', desc: 'Projétil balístico com cone oco metálico que forma jato de plasma penetrante.' }
           ]
         },
         'fuzil': {
@@ -892,36 +946,12 @@
           image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB1E6NfRGm2ML32yrEBoaQforxaBKSR1Wnbk4TsIe_3Qt3P81OWj5Rc5ByKquKN_2LR0Kqc58ncuzyEh7dNKYC_T9vxR2gjMYC-FFiJqoPZSQxOrOcrDaFRhvOOymwTbv6HPKOoI42onow4whkMXIdJLE4MQRCHCdPp53mG8PpIk84BvdP4iA8nyVPiFdYpNVjK32A0GGn8YYYwk_mF1FxyoOOQEn5KM8Yg1mYWexA',
           origin: 'Alemanha • Calibre 7.92x57mm Mauser',
           hotspots: [
-            {
-              id: 1, x: 18, y: 44, pos: 'top-left',
-              title: 'Cano Ranhurado de Alta Precisão (600mm)',
-              desc: 'Cano em aço forjado estriado com 4 raias à direita para estabilidade giroscópica de alta velocidade.'
-            },
-            {
-              id: 2, x: 38, y: 38, pos: 'bottom-center',
-              title: 'Alça de Mira Tangencial Graduada',
-              desc: 'Mecanismo graduado com cursor deslizante para correções de alcance de 100 a 2.000 metros.'
-            },
-            {
-              id: 3, x: 53, y: 36, pos: 'top-center',
-              title: 'Alavanca Curvada do Ferrolho',
-              desc: 'Manuseio rápido e ergonômico que não colide com lunetas ópticas montadas sobre a culatra.'
-            },
-            {
-              id: 4, x: 61, y: 44, pos: 'top-right',
-              title: 'Garra Extratora Mauser 98',
-              desc: 'Lâmina de extração não rotativa que agarra o aro da munição antes da entrada na câmara, impedindo duplas alimentações.'
-            },
-            {
-              id: 5, x: 55, y: 62, pos: 'bottom-left',
-              title: 'Gatilho de Dois Estágios',
-              desc: 'Disparo preciso com curso suave de preparação e quebra limpa para tiros a longa distância.'
-            },
-            {
-              id: 6, x: 80, y: 52, pos: 'bottom-right',
-              title: 'Coronha em Nogueira com Soleira de Aço',
-              desc: 'Madeira nobre tratada anatomicamente com chapa metálica de proteção e amortecimento no ombro.'
-            }
+            { id: 1, x: 18, y: 44, pos: 'top-left', title: 'Cano Ranhurado de Alta Precisão (600mm)', desc: 'Cano em aço forjado estriado para estabilidade giroscópica.' },
+            { id: 2, x: 38, y: 38, pos: 'bottom-center', title: 'Alça de Mira Tangencial Graduada', desc: 'Mecanismo graduado com cursor deslizante para 100 a 2.000 metros.' },
+            { id: 3, x: 53, y: 36, pos: 'top-center', title: 'Alavanca Curvada do Ferrolho', desc: 'Manuseio rápido e ergonômico que não colide com lunetas.' },
+            { id: 4, x: 61, y: 44, pos: 'top-right', title: 'Garra Extratora Mauser 98', desc: 'Lâmina de extração não rotativa que agarra o aro da munição.' },
+            { id: 5, x: 55, y: 62, pos: 'bottom-left', title: 'Gatilho de Dois Estágios', desc: 'Disparo preciso com curso suave de preparação e quebra limpa.' },
+            { id: 6, x: 80, y: 52, pos: 'bottom-right', title: 'Coronha em Nogueira com Soleira de Aço', desc: 'Madeira nobre tratada anatomicamente com chapa metálica de proteção.' }
           ]
         },
         'espingarda': {
@@ -930,36 +960,12 @@
           image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD9AvJUsG1xx7TVSLD9ydv7Wav-y9jW20JAKRY9x4paAyX3cuaE4f4Kw6ETyMx4EYu2JwYRuIn3lHYre_REPgAD9gMVHZnadlyGqlLkNyqzGR5yVZQVFTprCS5T5CjiCkmtduIcYxSXWIXu_Oc2Q-t4K1vpPFc5XiTN5MpMH0Z-AahbB0adwvrEq-Qa584t91Wn9BnqX4n5klvWG3kHz6VhxGFOLUgc2ZPB6RVj1qE',
           origin: 'Global • Calibre 12 GA',
           hotspots: [
-            {
-              id: 1, x: 22, y: 40, pos: 'top-left',
-              title: 'Canos Duplos Paralelos Encurtados',
-              desc: 'Canos paralelos compactos ideais para manobra ágil e dispersão rápida da nuvem de bagos de chumbo.'
-            },
-            {
-              id: 2, x: 42, y: 36, pos: 'bottom-center',
-              title: 'Costela de Visada e Massa de Mira',
-              desc: 'Banda soldada plana unindo os canos para visada rápida intuitiva em alvos próximos.'
-            },
-            {
-              id: 3, x: 53, y: 47, pos: 'top-center',
-              title: 'Câmaras Duplas e Extrator',
-              desc: 'Abertura total por articulação mecânica para inserção rápida de dois cartuchos simultâneos.'
-            },
-            {
-              id: 4, x: 62, y: 34, pos: 'top-right',
-              title: 'Alavanca Superior de Basculamento',
-              desc: 'Destrancamento superior sob pressão do polegar para quebra imediata da culatra.'
-            },
-            {
-              id: 5, x: 64, y: 60, pos: 'bottom-left',
-              title: 'Gatilhos Sequenciais Duplos',
-              desc: 'Dois gatilhos totalmente independentes dedicados cada um ao seu respectivo cano.'
-            },
-            {
-              id: 6, x: 82, y: 64, pos: 'bottom-right',
-              title: 'Coronha de Madeira com Grip Inglês',
-              desc: 'Empunhadura clássica em madeira maciça que apoia com firmeza contra o recuo vigoroso do calibre 12.'
-            }
+            { id: 1, x: 22, y: 40, pos: 'top-left', title: 'Canos Duplos Paralelos Encurtados', desc: 'Canos paralelos compactos ideais para dispersão rápida.' },
+            { id: 2, x: 42, y: 36, pos: 'bottom-center', title: 'Costela de Visada e Massa de Mira', desc: 'Banda soldada plana unindo os canos para visada rápida.' },
+            { id: 3, x: 53, y: 47, pos: 'top-center', title: 'Câmaras Duplas e Extrator', desc: 'Abertura total por articulação mecânica para inserção rápida.' },
+            { id: 4, x: 62, y: 34, pos: 'top-right', title: 'Alavanca Superior de Basculamento', desc: 'Destrancamento superior sob pressão do polegar.' },
+            { id: 5, x: 64, y: 60, pos: 'bottom-left', title: 'Gatilhos Sequenciais Duplos', desc: 'Dois gatilhos independentes dedicados a cada cano.' },
+            { id: 6, x: 82, y: 64, pos: 'bottom-right', title: 'Coronha de Madeira com Grip Inglês', desc: 'Empunhadura clássica contra o recuo do calibre 12.' }
           ]
         },
         'revolver': {
@@ -968,36 +974,12 @@
           image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCWWmexwyUvL4CAeLzbAXsp2pe05IaMdeAlOmLBPy9Sa1nIQGQrmULH9z622xCm8YNFbL3tKIOROoEWWmTsMber-wqj1VPGS9FuRmRoTKrBimSg3YLBNsaPJ5MyHLBNAKHgbanhyUjoBzCiOeAN8mQeMuPISVn9dfw8IoC9PP3ui7zb1QG77gOMnCfwdrxTAEqmYwnI9UtVL_6x9usK1jGhFPHtHqBBUzqVC5_H8U8',
           origin: 'EUA / Global • Calibre .45 Colt / .357',
           hotspots: [
-            {
-              id: 1, x: 23, y: 30, pos: 'top-left',
-              title: 'Cano Estriado com Alma Raiada',
-              desc: 'Estrias helicoidais precisas que imprimem rotação giroscópica ao projétil ogival.'
-            },
-            {
-              id: 2, x: 44, y: 46, pos: 'bottom-left',
-              title: 'Tambor Giratório com 6 Câmaras',
-              desc: 'Cilindro rotativo canelado em aço com seis câmaras que giram sequencialmente a cada ciclo.'
-            },
-            {
-              id: 3, x: 50, y: 31, pos: 'top-center',
-              title: 'Armação Sólida em Aço Forjado',
-              desc: 'Monobloco rígido que absorve integralmente o pico de pressão da combustão dos cartuchos magnum.'
-            },
-            {
-              id: 4, x: 67, y: 34, pos: 'top-right',
-              title: 'Cão Percussor com Esporão Serrilhado',
-              desc: 'Mecanismo de impacto armado manualmente pelo polegar ou automaticamente pela tecla de disparo.'
-            },
-            {
-              id: 5, x: 56, y: 64, pos: 'bottom-center',
-              title: 'Gatilho de Disparo Crisp',
-              desc: 'Mecanismo sensível de baixa fricção que solta a noz do cão sem arrasto perceptível.'
-            },
-            {
-              id: 6, x: 74, y: 78, pos: 'bottom-right',
-              title: 'Placas de Empunhadura Anatômica',
-              desc: 'Madeira nobre tratada com desenho ergonômico que canaliza a rotação do recuo.'
-            }
+            { id: 1, x: 23, y: 30, pos: 'top-left', title: 'Cano Estriado com Alma Raiada', desc: 'Estrias helicoidais precisas que imprimem rotação giroscópica.' },
+            { id: 2, x: 44, y: 46, pos: 'bottom-left', title: 'Tambor Giratório com 6 Câmaras', desc: 'Cilindro rotativo canelado em aço com seis câmaras.' },
+            { id: 3, x: 50, y: 31, pos: 'top-center', title: 'Armação Sólida em Aço Forjado', desc: 'Monobloco rígido que absorve o pico de pressão.' },
+            { id: 4, x: 67, y: 34, pos: 'top-right', title: 'Cão Percussor com Esporão Serrilhado', desc: 'Mecanismo de impacto armado pelo polegar ou tecla de disparo.' },
+            { id: 5, x: 56, y: 64, pos: 'bottom-center', title: 'Gatilho de Disparo Crisp', desc: 'Mecanismo sensível que solta a noz do cão sem arrasto.' },
+            { id: 6, x: 74, y: 78, pos: 'bottom-right', title: 'Placas de Empunhadura Anatômica', desc: 'Madeira nobre que canaliza a rotação do recuo.' }
           ]
         },
         'ak47': {
@@ -1006,36 +988,12 @@
           image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDFw4HuxsTjumSmqdwkMLNlQTlZd3gnY1yfszjZFKR0S30KccH41MC4vU6I0Ex7hbX1Kgdmo2YEXFUNTSy7IWT7cWpOvq5zsWzNiw67Y05Gku-7AogRaYEC_xyojd-fcFM0VW5dgDAnWw41P1GL2BqJGAp34hCKYJdbNfMjHi0Uoky4417WKYpaoiWgr0Qg8xDUeB_HcQpvYh7_da7TH1mta6AXS2OX_52s3-OAp2c',
           origin: 'URSS • Calibre 7.62x39mm',
           hotspots: [
-            {
-              id: 1, x: 19, y: 44, pos: 'top-left',
-              title: 'Boca do Cano e Massa Protegida',
-              desc: 'Cano cromado de 415mm com proteção lateral circular para a mira frontal metálica.'
-            },
-            {
-              id: 2, x: 33, y: 36, pos: 'top-center',
-              title: 'Tubo de Gases e Êmbolo',
-              desc: 'Canal de sangria superior que conduz gases deflagrados para recuar o pistão mecânico de curso longo.'
-            },
-            {
-              id: 3, x: 49, y: 38, pos: 'top-right',
-              title: 'Caixa de Culatra Usinada',
-              desc: 'Receptor em aço usinado com folgas internas generosas que toleram poeira, detritos e lama.'
-            },
-            {
-              id: 4, x: 57, y: 44, pos: 'right',
-              title: 'Alavanca do Seletor de Fogo',
-              desc: 'Alavanca estampada que atua também como cobertura de poeira e alterna entre automático e semiautomático.'
-            },
-            {
-              id: 5, x: 44, y: 68, pos: 'bottom-left',
-              title: 'Carregador Curvo de 30 Tiros',
-              desc: 'Carregador icônico em chapa de aço nervurada projetado para o cartucho cônico 7.62mm.'
-            },
-            {
-              id: 6, x: 80, y: 45, pos: 'bottom-right',
-              title: 'Coronha Traseira em Madeira Laminada',
-              desc: 'Construção maciça em contraplacado de bétula tratada resistente a condições térmicas severas.'
-            }
+            { id: 1, x: 19, y: 44, pos: 'top-left', title: 'Boca do Cano e Massa Protegida', desc: 'Cano cromado de 415mm com proteção lateral circular.' },
+            { id: 2, x: 33, y: 36, pos: 'top-center', title: 'Tubo de Gases e Êmbolo', desc: 'Canal de sangria superior que conduz gases deflagrados.' },
+            { id: 3, x: 49, y: 38, pos: 'top-right', title: 'Caixa de Culatra Usinada', desc: 'Receptor em aço usinado com folgas internas generosas.' },
+            { id: 4, x: 57, y: 44, pos: 'right', title: 'Alavanca do Seletor de Fogo', desc: 'Alavanca estampada que alterna entre automático e semi.' },
+            { id: 5, x: 44, y: 68, pos: 'bottom-left', title: 'Carregador Curvo de 30 Tiros', desc: 'Carregador icônico em chapa de aço nervurada.' },
+            { id: 6, x: 80, y: 45, pos: 'bottom-right', title: 'Coronha Traseira em Madeira', desc: 'Construção maciça em contraplacado de bétula tratada.' }
           ]
         },
         'thompson': {
@@ -1044,36 +1002,12 @@
           image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA2nxlKmtBM-Xo1EwdJQdHQEyekCW8xyPCHg9JPR_4FqN8w8_BKD8YLpov2pRhKOQj9jxzRzcuKLD40yp5RlsdMHnSbFGMDLc0KpLJ7EGgwWuWvb7W-NhQJtciIyspABr_JELm89xAObyDjoko24svCuJiaE73VPVtIP8MTq77H8WW5-KRtMk41_jBID0QSsmmQVjtn-8DcFKgQnGhBNAu7FDmDoHKN6vH3fdjL44A',
           origin: 'EUA • Calibre .45 ACP',
           hotspots: [
-            {
-              id: 1, x: 19, y: 39, pos: 'top-left',
-              title: 'Compensador Cutts na Boca',
-              desc: 'Fendas defletoras superiores que reduzem a subida do cano durante disparos contínuos.'
-            },
-            {
-              id: 2, x: 30, y: 39, pos: 'top-center',
-              title: 'Aletas Externas de Arrefecimento',
-              desc: 'Ranhuras circulares no contorno de aço do cano que multiplicam a área de troca térmica.'
-            },
-            {
-              id: 3, x: 35, y: 58, pos: 'bottom-left',
-              title: 'Empunhadura Frontal de Madeira',
-              desc: 'Punho vertical esculpido em nogueira que confere controle no calibre .45 automático.'
-            },
-            {
-              id: 4, x: 48, y: 60, pos: 'bottom-center',
-              title: 'Tambor Rotativo de 50 Tiros',
-              desc: 'Carregador circular de alta capacidade acionado por mola espiral interna sob corda manual.'
-            },
-            {
-              id: 5, x: 52, y: 33, pos: 'top-right',
-              title: 'Alavanca Superior do Ferrolho',
-              desc: 'Manípulo de armação na tampa superior para retenção do conjunto na posição de culatra aberta.'
-            },
-            {
-              id: 6, x: 79, y: 51, pos: 'bottom-right',
-              title: 'Coronha Traseira Desmontável',
-              desc: 'Coronha destacável por botão mecânico para transporte compacto em viaturas ou malas.'
-            }
+            { id: 1, x: 19, y: 39, pos: 'top-left', title: 'Compensador Cutts na Boca', desc: 'Fendas defletoras superiores que reduzem a subida do cano.' },
+            { id: 2, x: 30, y: 39, pos: 'top-center', title: 'Aletas Externas de Arrefecimento', desc: 'Ranhuras circulares que multiplicam a troca térmica.' },
+            { id: 3, x: 35, y: 58, pos: 'bottom-left', title: 'Empunhadura Frontal de Madeira', desc: 'Punho vertical esculpido em nogueira para controle.' },
+            { id: 4, x: 48, y: 60, pos: 'bottom-center', title: 'Tambor Rotativo de 50 Tiros', desc: 'Carregador circular acionado por mola espiral interna.' },
+            { id: 5, x: 52, y: 33, pos: 'top-right', title: 'Alavanca Superior do Ferrolho', desc: 'Manípulo de armação para retenção na culatra aberta.' },
+            { id: 6, x: 79, y: 51, pos: 'bottom-right', title: 'Coronha Traseira Desmontável', desc: 'Coronha destacável por botão mecânico.' }
           ]
         },
         'steyraug': {
@@ -1082,36 +1016,12 @@
           image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC6b9c_s1l_l6SzIbY-onygCWbMREO5Nl-GlJVKqm7YJuXzimqGSi6dap6L75BN_6oavkBPbV1yqWv5Du1FJy-U4cMGMrtSSYWDYqwCezPML3etvmvtjIpKSM9mZZpLVOtYGQFDomvIYtOY4K_ukbRtgAejwXB-bx814AfIxiVVEP2ghR_6iA-693eDjT0lrLmYThUasmsOVhNAyMSP3Pxi5CnnkgkYJsXfajq35Hg',
           origin: 'Áustria • Calibre 5.56x45mm NATO',
           hotspots: [
-            {
-              id: 1, x: 20, y: 52, pos: 'top-left',
-              title: 'Quebra-Chamas Multifunção',
-              desc: 'Boca com fendas angulares que suprimem clarões noturnos e servem de guia de lançamento.'
-            },
-            {
-              id: 2, x: 30, y: 64, pos: 'bottom-left',
-              title: 'Punho Dianteiro Articulado',
-              desc: 'Empunhadura rebatível que atua também como alavanca de troca rápida do cano.'
-            },
-            {
-              id: 3, x: 44, y: 35, pos: 'top-center',
-              title: 'Mira Óptica Swarovski 1.5x Integrada',
-              desc: 'Luneta embutida com anel "donut" que acelera o enquadramento do alvo em distâncias táticas.'
-            },
-            {
-              id: 4, x: 46, y: 64, pos: 'bottom-center',
-              title: 'Gatilho com Estágio Progressivo',
-              desc: 'Disparo inteligente sem seletor: pressão inicial gera tiro único; curso total ativa rajada.'
-            },
-            {
-              id: 5, x: 67, y: 68, pos: 'bottom-right',
-              title: 'Carregador Bullpup Translúcido',
-              desc: 'Armação de polímero semitransparente inserida na parte posterior do receptor.'
-            },
-            {
-              id: 6, x: 78, y: 50, pos: 'top-right',
-              title: 'Culatra Interna na Coronha',
-              desc: 'Ferrolho rotativo de 7 dentes integrado diretamente dentro do chassi traseiro.'
-            }
+            { id: 1, x: 20, y: 52, pos: 'top-left', title: 'Quebra-Chamas Multifunção', desc: 'Boca com fendas angulares que suprimem clarões noturnos.' },
+            { id: 2, x: 30, y: 64, pos: 'bottom-left', title: 'Punho Dianteiro Articulado', desc: 'Empunhadura rebatível que atua na troca rápida de cano.' },
+            { id: 3, x: 44, y: 35, pos: 'top-center', title: 'Mira Óptica Swarovski 1.5x', desc: 'Luneta embutida com anel "donut" para enquadramento.' },
+            { id: 4, x: 46, y: 64, pos: 'bottom-center', title: 'Gatilho Progressivo', desc: 'Pressão inicial gera tiro único; curso total ativa rajada.' },
+            { id: 5, x: 67, y: 68, pos: 'bottom-right', title: 'Carregador Bullpup Translúcido', desc: 'Armação de polímero inserida na parte posterior.' },
+            { id: 6, x: 78, y: 50, pos: 'top-right', title: 'Culatra Interna na Coronha', desc: 'Ferrolho rotativo de 7 dentes integrado no chassi.' }
           ]
         },
         'winchester': {
@@ -1120,36 +1030,12 @@
           image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCqOKMPPj26lqKqt8LXxxeAFD7dQxylPOrNR50KqBEe9u1evFbzw_wDJzlYuhYFxXz4TeenttbRohQk5PQb7zUz9N9eVqazpVZbBjXlzU66x4xFSAfOBHWY9Xxj7DDmiVP_tmm0YmXqGQ8pU4Zu7dyoxq3MvZYmGSQe5xlKe_3_l3KiMQkdUaTxpTDXWljPxwHY0eqRxUnbdfIvTuZIITxB0q36arAdmHocXx_BvTg',
           origin: 'EUA • Calibre .44-40 WCF',
           hotspots: [
-            {
-              id: 1, x: 19, y: 44, pos: 'top-left',
-              title: 'Cano Octogonal e Depósito Tubular',
-              desc: 'Cano de 8 faces com tubo de munição inferior paralelo que armazena até 15 cartuchos.'
-            },
-            {
-              id: 2, x: 44, y: 41, pos: 'top-center',
-              title: 'Portinhola Lateral de Carga (Loading Gate)',
-              desc: 'Lâmina com mola para inserção frontal de cartuchos diretamente no depósito.'
-            },
-            {
-              id: 3, x: 50, y: 35, pos: 'top-right',
-              title: 'Tampa Antipoeira Superior Deslizante',
-              desc: 'Blindagem de aço que protege a culatra contra poeira em transporte a cavalo.'
-            },
-            {
-              id: 4, x: 52, y: 60, pos: 'bottom-left',
-              title: 'Alavanca de Manejo Inferior (Lever Loop)',
-              desc: 'Alavanca articulada ao guarda-mato que extrai a cápsula usada e engatilha o cão externo.'
-            },
-            {
-              id: 5, x: 58, y: 46, pos: 'bottom-center',
-              title: 'Elevador de Cartuchos em Bronze',
-              desc: 'Bloco de bronze usinado que sobe verticalmente levando o cartucho para o alinhamento da câmara.'
-            },
-            {
-              id: 6, x: 79, y: 52, pos: 'bottom-right',
-              title: 'Coronha com Soleira Meia-Lua',
-              desc: 'Madeira nobre com extremidade côncava em ferro que assenta com firmeza anatômica no ombro.'
-            }
+            { id: 1, x: 19, y: 44, pos: 'top-left', title: 'Cano Octogonal e Depósito Tubular', desc: 'Cano de 8 faces com tubo de munição inferior paralelo.' },
+            { id: 2, x: 44, y: 41, pos: 'top-center', title: 'Portinhola Lateral de Carga', desc: 'Lâmina com mola para inserção frontal de cartuchos.' },
+            { id: 3, x: 50, y: 35, pos: 'top-right', title: 'Tampa Antipoeira Superior', desc: 'Blindagem de aço que protege a culatra contra poeira.' },
+            { id: 4, x: 52, y: 60, pos: 'bottom-left', title: 'Alavanca de Manejo Inferior', desc: 'Alavanca articulada ao guarda-mato que engatilha o cão.' },
+            { id: 5, x: 58, y: 46, pos: 'bottom-center', title: 'Elevador de Cartuchos em Bronze', desc: 'Bloco de bronze usinado que sobe verticalmente.' },
+            { id: 6, x: 79, y: 52, pos: 'bottom-right', title: 'Coronha com Soleira Meia-Lua', desc: 'Madeira nobre com extremidade côncava em ferro.' }
           ]
         },
         'barrett': {
@@ -1158,36 +1044,12 @@
           image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA7PJzsl-bS1yJdgSCOt9g_XWL4nxrcc1t0K4hnTY5JZ3BtoqPL4ojyNwqWTHZ4v2moWAXBYZIlM6J9H-cxkGHhfqp6Q4aJ8oDT4f8pncgOZ0nZcVFxuCXehNTVmIBjmIcyoDLdIjKBWFdFk3ijKPDVJjwb_oBbot1nfX1LP6q6BdJGZLE80tSD0zZkm-c9oM4kURJZ2AYvYZdeah4brH16ROX1u7hWy7t-WYIsy68',
           origin: 'EUA • Calibre .50 BMG (12.7x99mm)',
           hotspots: [
-            {
-              id: 1, x: 17, y: 46, pos: 'top-left',
-              title: 'Freio de Boca em Ponta de Flecha',
-              desc: 'Defletor colossal de duas câmaras que desvia 70% dos gases gerados para trás amortecendo o recuo.'
-            },
-            {
-              id: 2, x: 28, y: 47, pos: 'bottom-left',
-              title: 'Cano Flutuante de 29 Polegadas com Recuo',
-              desc: 'Cano canelado que recua 25mm para trás junto com o ferrolho antes do desengate da culatra.'
-            },
-            {
-              id: 3, x: 33, y: 66, pos: 'bottom-center',
-              title: 'Bipé Articulado de Alta Carga',
-              desc: 'Pernas de aço retráteis que concedem base rígida e nivelada para tiros a mais de 1.800 metros.'
-            },
-            {
-              id: 4, x: 49, y: 35, pos: 'top-center',
-              title: 'Trilho Picatinny Estendido Superior',
-              desc: 'Barramento usinado de grande extensão para acolher lunetas ópticas com retículo mil-dot.'
-            },
-            {
-              id: 5, x: 47, y: 66, pos: 'bottom-right',
-              title: 'Carregador Reto Destacável de 10 Tiros',
-              desc: 'Caixa de aço de alta pressão para dez munições antimaterial perfurantes .50 BMG.'
-            },
-            {
-              id: 6, x: 78, y: 55, pos: 'top-right',
-              title: 'Soleira com Amortecedor Mecânico',
-              desc: 'Composto elástico reforçado com mola de retorno interna para dissipação no atirador deitado.'
-            }
+            { id: 1, x: 17, y: 46, pos: 'top-left', title: 'Freio de Boca em Ponta de Flecha', desc: 'Defletor de duas câmaras que desvia 70% dos gases gerados.' },
+            { id: 2, x: 28, y: 47, pos: 'bottom-left', title: 'Cano Flutuante de 29" com Recuo', desc: 'Cano canelado que recua 25mm para trás junto com o ferrolho.' },
+            { id: 3, x: 33, y: 66, pos: 'bottom-center', title: 'Bipé Articulado de Alta Carga', desc: 'Pernas de aço retráteis para tiros a mais de 1.800 metros.' },
+            { id: 4, x: 49, y: 35, pos: 'top-center', title: 'Trilho Picatinny Estendido Superior', desc: 'Barramento usinado para acolher lunetas ópticas.' },
+            { id: 5, x: 47, y: 66, pos: 'bottom-right', title: 'Carregador Reto Destacável de 10 Tiros', desc: 'Caixa de aço de alta pressão para dez munições .50 BMG.' },
+            { id: 6, x: 78, y: 55, pos: 'top-right', title: 'Soleira com Amortecedor Mecânico', desc: 'Composto elástico reforçado com mola de retorno interna.' }
           ]
         }
       };
@@ -1203,31 +1065,20 @@
       const hotspotsContainer = document.getElementById('hotspotsContainer');
       const hotspotsLegendList = document.getElementById('hotspotsLegendList');
 
-      // Classes de posicionamento para o balão tooltip
       function getTooltipPlacementClasses(posKey) {
         switch(posKey) {
-          case 'top-center':
-            return 'bottom-10 left-1/2 -translate-x-1/2 origin-bottom';
-          case 'top-left':
-            return 'bottom-10 left-0 sm:-left-4 origin-bottom-left';
-          case 'top-right':
-            return 'bottom-10 right-0 sm:-right-4 origin-bottom-right';
-          case 'bottom-center':
-            return 'top-10 left-1/2 -translate-x-1/2 origin-top';
-          case 'bottom-left':
-            return 'top-10 left-0 sm:-left-4 origin-top-left';
-          case 'bottom-right':
-            return 'top-10 right-0 sm:-right-4 origin-top-right';
-          case 'right':
-            return 'top-1/2 -translate-y-1/2 left-10 origin-left';
-          case 'left':
-            return 'top-1/2 -translate-y-1/2 right-10 origin-right';
-          default:
-            return 'bottom-10 left-1/2 -translate-x-1/2 origin-bottom';
+          case 'top-center': return 'bottom-10 left-1/2 -translate-x-1/2 origin-bottom';
+          case 'top-left': return 'bottom-10 left-0 sm:-left-4 origin-bottom-left';
+          case 'top-right': return 'bottom-10 right-0 sm:-right-4 origin-bottom-right';
+          case 'bottom-center': return 'top-10 left-1/2 -translate-x-1/2 origin-top';
+          case 'bottom-left': return 'top-10 left-0 sm:-left-4 origin-top-left';
+          case 'bottom-right': return 'top-10 right-0 sm:-right-4 origin-top-right';
+          case 'right': return 'top-1/2 -translate-y-1/2 left-10 origin-left';
+          case 'left': return 'top-1/2 -translate-y-1/2 right-10 origin-right';
+          default: return 'bottom-10 left-1/2 -translate-x-1/2 origin-bottom';
         }
       }
 
-      // Funções de Isolamento Ativo: ao passar o mouse ou focar em um pino, os outros somem totalmente
       function activateHotspot(pinElement) {
         hotspotsContainer.classList.add('has-active-hotspot');
         const allPins = hotspotsContainer.querySelectorAll('.hotspot-pin');
@@ -1235,16 +1086,10 @@
           const tooltip = p.querySelector('.hotspot-tooltip');
           if (p === pinElement) {
             p.classList.add('is-active');
-            if (tooltip) {
-              tooltip.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
-              tooltip.classList.add('opacity-100', 'pointer-events-auto', 'scale-100');
-            }
+            if (tooltip) tooltip.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
           } else {
             p.classList.remove('is-active');
-            if (tooltip) {
-              tooltip.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
-              tooltip.classList.remove('opacity-100', 'pointer-events-auto', 'scale-100');
-            }
+            if (tooltip) tooltip.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
           }
         });
       }
@@ -1255,10 +1100,7 @@
         allPins.forEach(p => {
           p.classList.remove('is-active');
           const tooltip = p.querySelector('.hotspot-tooltip');
-          if (tooltip) {
-            tooltip.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
-            tooltip.classList.remove('opacity-100', 'pointer-events-auto', 'scale-100');
-          }
+          if (tooltip) tooltip.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
         });
       }
 
@@ -1292,8 +1134,6 @@
               <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary text-on-primary font-headline-sm text-[12px] sm:text-[13px] font-bold flex items-center justify-center shadow-xl shadow-black/90 border-2 border-surface-container-lowest">
                 ${spot.id}
               </div>
-
-              <!-- Balão de Anotação Calibrado -->
               <div class="hotspot-tooltip absolute ${placementClass} w-64 sm:w-72 p-3.5 rounded-xl bg-surface-container-lowest/98 backdrop-blur-md border border-primary/50 shadow-[0_20px_45px_rgba(0,0,0,0.95)] opacity-0 pointer-events-none scale-95 transition-all duration-200 z-50">
                 <div class="flex items-center gap-1.5 pb-1 border-b border-outline-variant/30 mb-1.5">
                   <span class="w-2 h-2 rounded-full bg-primary"></span>
@@ -1305,7 +1145,6 @@
             </div>
           `;
 
-          // Eventos para acionar o isolamento
           pin.addEventListener('mouseenter', () => activateHotspot(pin));
           pin.addEventListener('mouseleave', () => deactivateHotspot());
           pin.addEventListener('focus', () => activateHotspot(pin));
@@ -1317,7 +1156,6 @@
 
           hotspotsContainer.appendChild(pin);
 
-          // Card na legenda inferior
           const legendItem = document.createElement('div');
           legendItem.className = 'flex items-start gap-2.5 p-2 rounded-lg bg-surface-container/60 hover:bg-surface-container border border-outline-variant/20 hover:border-primary/40 transition-colors cursor-pointer group/leg';
           legendItem.innerHTML = `
@@ -1334,9 +1172,7 @@
             const currentPin = hotspotsContainer.querySelector(`[data-spot-id="${spot.id}"]`);
             if (currentPin) activateHotspot(currentPin);
           });
-          legendItem.addEventListener('mouseleave', () => {
-            deactivateHotspot();
-          });
+          legendItem.addEventListener('mouseleave', () => deactivateHotspot());
           legendItem.addEventListener('click', () => {
             const currentPin = hotspotsContainer.querySelector(`[data-spot-id="${spot.id}"]`);
             if (currentPin) activateHotspot(currentPin);
@@ -1365,48 +1201,36 @@
         }, 300);
       }
 
-      closeModalBtn.addEventListener('click', closeWeaponInspector);
-      closeModalBottomBtn.addEventListener('click', closeWeaponInspector);
+      if (closeModalBtn) closeModalBtn.addEventListener('click', closeWeaponInspector);
+      if (closeModalBottomBtn) closeModalBottomBtn.addEventListener('click', closeWeaponInspector);
 
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          closeWeaponInspector();
-        }
-      });
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeWeaponInspector();
+        });
+      }
 
       window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+        if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
           closeWeaponInspector();
         }
       });
 
-      const weaponCards = document.querySelectorAll('.weapon-card');
-      weaponCards.forEach(card => {
+      document.querySelectorAll('.weapon-card').forEach(card => {
         card.addEventListener('click', () => {
           const weaponId = card.getAttribute('data-weapon-id') || 'pistola';
           openWeaponInspector(weaponId);
         });
       });
 
-      // Suporte a URL params (?weapon=glock ou ?weapon=bazuca)
-      try {
-        const urlParams = new URLSearchParams(window.location.search);
-        const weaponParam = urlParams.get('weapon') || urlParams.get('arma');
-        if (weaponParam && WEAPONS_DATA[weaponParam.toLowerCase().trim()]) {
-          setTimeout(() => {
-            openWeaponInspector(weaponParam.toLowerCase().trim());
-          }, 200);
-        }
-      } catch(e) {}
-
-      // Busca e filtros
+      // Busca e Filtro de Armas
       const searchInput = document.getElementById('searchInput');
       const filterBtns = document.querySelectorAll('.filter-btn');
       let activeFilter = 'all';
 
       function filterCards() {
-        const query = (searchInput.value || '').toLowerCase().trim();
-        weaponCards.forEach(card => {
+        const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+        document.querySelectorAll('.weapon-card').forEach(card => {
           const category = card.getAttribute('data-category') || '';
           const cardText = card.innerText.toLowerCase();
           const matchesCategory = (activeFilter === 'all') || category.includes(activeFilter);
@@ -1435,12 +1259,8 @@
         });
       });
 
-      searchInput.addEventListener('input', filterCards);
+      if (searchInput) searchInput.addEventListener('input', filterCards);
     })();
   </script>
-
-
-
-
-
-</body></html>
+</body>
+</html>
