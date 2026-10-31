@@ -153,15 +153,15 @@
       <nav class="hidden md:flex items-center gap-1 sm:gap-2">
         
         <a class="nav-link font-label-caps text-label-caps uppercase px-4 py-2 text-primary font-bold border-b-2 border-primary bg-surface-container-high hover:text-on-surface transition-all rounded tracking-widest" href="index.html">INÍCIO</a>
-        <a class="nav-link font-label-caps text-label-caps uppercase px-4 py-2 text-on-surface-variant hover:text-on-surface transition-all rounded tracking-widest" href="pagina_de_armas.html">ARMAS</a>
-        <a class="nav-link font-label-caps text-label-caps uppercase px-4 py-2 text-on-surface-variant hover:text-on-surface transition-all rounded tracking-widest" href="pagina_de_venda.html">LOCAIS DE VENDA</a>
-        <a class="nav-link font-label-caps text-label-caps uppercase px-4 py-2 text-on-surface-variant hover:text-on-surface transition-all rounded tracking-widest" href="pagina_de_clubes.html">CLUBES DE TIRO</a>
+        <a class="nav-link font-label-caps text-label-caps uppercase px-4 py-2 text-on-surface-variant hover:text-on-surface transition-all rounded tracking-widest" href="Pagina_de_armas.html">ARMAS</a>
+        <a class="nav-link font-label-caps text-label-caps uppercase px-4 py-2 text-on-surface-variant hover:text-on-surface transition-all rounded tracking-widest" href="Pagina_de_venda.html">LOCAIS DE VENDA</a>
+        <a class="nav-link font-label-caps text-label-caps uppercase px-4 py-2 text-on-surface-variant hover:text-on-surface transition-all rounded tracking-widest" href="Pagina_de_clubes.html">CLUBES DE TIRO</a>
     
       </nav>
 
       <!-- Action Buttons & User Profile -->
       <div class="flex items-center gap-3 shrink-0">
-        <a class="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-lg bg-primary-container hover:bg-primary text-on-primary-container font-label-caps text-[11px] uppercase tracking-wider transition-all shadow-sm font-semibold" href="pagina_de_armas.html">
+        <a class="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-lg bg-primary-container hover:bg-primary text-on-primary-container font-label-caps text-[11px] uppercase tracking-wider transition-all shadow-sm font-semibold" href="Pagina_de_armas.html">
           Consultar Guia
         </a>
         <button aria-label="Acessar Conta" class="w-9 h-9 rounded-full bg-primary hover:bg-primary-container text-on-primary transition-all flex items-center justify-center shadow-[0_0_12px_rgba(233,193,118,0.25)] cursor-pointer focus:outline-none" id="user-login-btn">
@@ -489,7 +489,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <a class="bg-surface-container-low p-8 rounded-xl flex flex-col justify-between shadow-lg hover:bg-surface-container transition-all duration-300 group border border-outline-variant/20" href="pagina_de_armas.html">
+              <a class="bg-surface-container-low p-8 rounded-xl flex flex-col justify-between shadow-lg hover:bg-surface-container transition-all duration-300 group border border-outline-variant/20" href="Pagina_de_armas.html">
                 <div>
                   <div class="w-12 h-12 rounded-lg bg-surface-container-high group-hover:bg-primary/20 flex items-center justify-center text-primary mb-6 transition-colors">
                     <span class="material-symbols-outlined text-[28px]">search_insights</span>
@@ -506,7 +506,7 @@
                 </div>
               </a>
 
-              <a class="bg-surface-container-low p-8 rounded-xl flex flex-col justify-between shadow-lg hover:bg-surface-container transition-all duration-300 group border border-outline-variant/20" href="pagina_de_venda.html">
+              <a class="bg-surface-container-low p-8 rounded-xl flex flex-col justify-between shadow-lg hover:bg-surface-container transition-all duration-300 group border border-outline-variant/20" href="Pagina_de_venda.html">
                 <div>
                   <div class="w-12 h-12 rounded-lg bg-surface-container-high group-hover:bg-primary/20 flex items-center justify-center text-primary mb-6 transition-colors">
                     <span class="material-symbols-outlined text-[28px]">storefront</span>
@@ -523,7 +523,7 @@
                 </div>
               </a>
 
-              <a class="bg-surface-container-low p-8 rounded-xl flex flex-col justify-between shadow-lg hover:bg-surface-container transition-all duration-300 group border border-outline-variant/20" href="pagina_de_clubes.html">
+              <a class="bg-surface-container-low p-8 rounded-xl flex flex-col justify-between shadow-lg hover:bg-surface-container transition-all duration-300 group border border-outline-variant/20" href="Pagina_de_clubes.html">
                 <div>
                   <div class="w-12 h-12 rounded-lg bg-surface-container-high group-hover:bg-primary/20 flex items-center justify-center text-primary mb-6 transition-colors">
                     <span class="material-symbols-outlined text-[28px]">target</span>
@@ -762,11 +762,11 @@
         const input = document.getElementById('tacticalSearch');
         const query = (input ? input.value : '').trim().toLowerCase();
         if (query.includes('clube') || query.includes('estande')) {
-          window.location.href = 'pagina_de_clubes.html';
+          window.location.href = 'Pagina_de_clubes.html';
         } else if (query.includes('loja') || query.includes('venda') || query.includes('compra')) {
-          window.location.href = 'pagina_de_venda.html';
+          window.location.href = 'Pagina_de_venda.html';
         } else {
-          window.location.href = 'pagina_de_armas.html';
+          window.location.href = 'Pagina_de_armas.html';
         }
       });
     }
