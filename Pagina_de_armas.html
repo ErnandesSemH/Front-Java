@@ -619,6 +619,30 @@
         </div>
       </div>
 
+      <!-- SEÇÃO INTEGRADA À API JAVA: DADOS CADASTRAIS -->
+      <section class="max-w-7xl mx-auto px-6 lg:px-12 pb-margin w-full" aria-labelledby="apiCatalogTitle">
+        <div class="mb-space-lg flex flex-col gap-2">
+          <div class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+            <span class="font-label-caps text-[11px] uppercase tracking-widest text-primary">Integração com Back-end • Java / Spring Boot</span>
+          </div>
+          <h2 id="apiCatalogTitle" class="font-headline-lg text-headline-lg uppercase tracking-tight text-on-surface">Registros carregados pela API</h2>
+          <p class="font-body-md text-on-surface-variant max-w-3xl">Esta seção consulta os registros disponibilizados pelo projeto Java e apresenta seus dados cadastrais. Os dez cartões históricos acima permanecem preservados.</p>
+        </div>
+
+        <div class="mb-space-md flex flex-wrap items-center justify-between gap-3 rounded-xl border border-outline-variant/30 bg-surface-container-low p-space-md">
+          <div class="flex items-center gap-2">
+            <span id="apiStatusIndicator" class="h-2.5 w-2.5 rounded-full bg-outline"></span>
+            <p id="apiStatus" class="font-label-caps text-[11px] uppercase tracking-wider text-on-surface-variant" role="status" aria-live="polite">Aguardando consulta à API...</p>
+          </div>
+          <button id="reloadApiRecords" type="button" class="rounded-lg bg-primary-container px-4 py-2 font-label-caps text-[11px] font-semibold uppercase tracking-wider text-on-primary-container transition-colors hover:bg-primary">Atualizar registros</button>
+        </div>
+
+        <div id="apiRecordsGrid" class="grid grid-cols-1 gap-space-md md:grid-cols-2 lg:grid-cols-3" aria-live="polite">
+          <div class="rounded-xl border border-outline-variant/20 bg-surface-container-low p-space-lg text-sm text-on-surface-variant">Os registros serão exibidos aqui quando a API responder.</div>
+        </div>
+      </section>
+
       <section class="max-w-7xl mx-auto px-6 lg:px-12 pb-margin w-full">
         <div class="bg-surface-container-low border border-outline-variant/30 rounded-2xl p-space-lg md:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-space-lg shadow-lg">
           <div class="flex items-start gap-space-md">
@@ -1262,5 +1286,105 @@
       if (searchInput) searchInput.addEventListener('input', filterCards);
     })();
   </script>
+
+  <!-- INTEGRAÇÃO READ-ONLY COM A API SPRING BOOT -->
+  <script>
+    (function () {
+      const API_URL = 'http://localhost:8080/api/guns';
+      const grid = document.getElementById('apiRecordsGrid');
+      const statusText = document.getElementById('apiStatus');
+      const statusIndicator = document.getElementById('apiStatusIndicator');
+      const reloadButton = document.getElementById('reloadApiRecords');
+
+      if (!grid || !statusText || !statusIndicator) return;
+
+      function setStatus(message, state) {
+        statusText.textContent = message;
+        statusIndicator.className = 'h-2.5 w-2.5 rounded-full';
+        if (state === 'success') statusIndicator.classList.add('bg-emerald-500');
+        else if (state === 'error') statusIndicator.classList.add('bg-red-500');
+        else statusIndicator.classList.add('bg-primary');
+      }
+
+      function createInfo(label, value) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-1';
+        const title = document.createElement('span');
+        title.className = 'font-label-caps text-[10px] uppercase tracking-wider text-outline';
+        title.textContent = label;
+        const content = document.createElement('span');
+        content.className = 'font-body-sm text-sm text-on-surface';
+        content.textContent = value == null || value === '' ? 'Não informado' : String(value);
+        wrapper.append(title, content);
+        return wrapper;
+      }
+
+      function createRecordCard(record) {
+        const card = document.createElement('article');
+        card.className = 'rounded-xl border border-outline-variant/30 bg-surface-container-low p-space-lg shadow-md';
+
+        const header = document.createElement('div');
+        header.className = 'mb-space-md flex items-start justify-between gap-3';
+        const name = document.createElement('h3');
+        name.className = 'font-headline-md text-lg font-semibold uppercase tracking-tight text-on-surface';
+        name.textContent = record.name || 'Registro sem nome';
+        const id = document.createElement('span');
+        id.className = 'shrink-0 rounded bg-surface-container-high px-2 py-1 font-label-mono text-[10px] text-primary';
+        id.textContent = 'ID ' + (record.id ?? '—');
+        header.append(name, id);
+
+        const details = document.createElement('div');
+        details.className = 'grid grid-cols-2 gap-space-md';
+        details.append(
+          createInfo('Fabricante', record.producer),
+          createInfo('Ano', record.year),
+          createInfo('Categoria', record.type),
+          createInfo('Calibre cadastrado', record.caliber)
+        );
+
+        const footer = document.createElement('p');
+        footer.className = 'mt-space-md border-t border-outline-variant/20 pt-space-sm font-label-mono text-[10px] uppercase tracking-wide text-outline';
+        footer.textContent = 'Dados recebidos diretamente da API Java';
+        card.append(header, details, footer);
+        return card;
+      }
+
+      async function loadApiRecords() {
+        setStatus('Consultando API local...', 'loading');
+        if (reloadButton) reloadButton.disabled = true;
+        grid.replaceChildren();
+
+        try {
+          const response = await fetch(API_URL, { method: 'GET', headers: { 'Accept': 'application/json' } });
+          if (!response.ok) throw new Error('A API respondeu com HTTP ' + response.status + '.');
+          const records = await response.json();
+          if (!Array.isArray(records)) throw new Error('O formato retornado pela API não é uma lista.');
+
+          if (records.length === 0) {
+            const empty = document.createElement('p');
+            empty.className = 'col-span-full rounded-xl border border-outline-variant/20 bg-surface-container-low p-space-lg text-sm text-on-surface-variant';
+            empty.textContent = 'A API respondeu corretamente, mas não há registros cadastrados.';
+            grid.appendChild(empty);
+          } else {
+            records.forEach(record => grid.appendChild(createRecordCard(record)));
+          }
+          setStatus(records.length + ' registro(s) recebido(s) da API.', 'success');
+        } catch (error) {
+          const message = document.createElement('p');
+          message.className = 'col-span-full rounded-xl border border-red-500/30 bg-surface-container-low p-space-lg text-sm text-on-surface-variant';
+          message.textContent = 'Não foi possível carregar os registros. Confirme se o Spring Boot está em execução na porta 8080 e se o CORS permite a origem do Live Server. Detalhe: ' + error.message;
+          grid.appendChild(message);
+          setStatus('Falha na conexão com a API.', 'error');
+          console.error('Erro ao consultar a API de registros:', error);
+        } finally {
+          if (reloadButton) reloadButton.disabled = false;
+        }
+      }
+
+      if (reloadButton) reloadButton.addEventListener('click', loadApiRecords);
+      loadApiRecords();
+    })();
+  </script>
+
 </body>
 </html>
